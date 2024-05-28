@@ -1,0 +1,80 @@
+/* Allproblems.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.container {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #f0f0f0;
+    position:relative;
+    overflow:hidden;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top:20px;
+  }
+  
+  .problemsList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style-type:none;
+  }
+  
+  .problemCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s;
+    width:900px;
+    margin-left:5%;
+  }
+  
+  .problemCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f8f9fa;
+  }
+  
+  .problemTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .problemTopic,
+  .problemDifficulty {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+
+  .createBtn{
+    position:absolute;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 9px 25px;
+    background-color: #90645E;
+    color:white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    margin-bottom:15px;
+    left:80%;
+  }
+
+  .createBtn:hover{
+    background-color: #b28e89;
+  }
+  

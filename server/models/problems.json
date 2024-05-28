@@ -1,0 +1,259 @@
+[
+    {
+      "title": "Three Sum",
+      "topic": "Two Pointers",
+      "difficulty": "Medium",
+      "description": "Given an array A of N integers, find three integers in A such that the sum is closest to a given number B. Return the sum of those three integers.",
+      "constraints": {
+        "minB": -300000000,
+        "maxB": 300000000,
+        "minN": 1,
+        "maxN": 10000,
+        "minA": -100000000,
+        "maxA": 100000000
+      },
+      "inputFormat": "First argument is an integer array A of size N. Second argument is an integer B denoting the sum you need to get close to.",
+      "outputFormat": "Return a single integer denoting the sum of three integers which is closest to B.",
+      "examples": [
+        {
+          "A": [-1, 2, 1, -4],
+          "B": 1,
+          "output":2
+        },
+        {
+          "A": [1, 2, 3],
+          "B": 6,
+          "output":6
+        }
+      ]
+    },
+    {
+        "title": "Intersection Of Sorted Arrays",
+        "topic": "Two Pointers",
+        "difficulty": "Easy",
+        "description": "Find the intersection of two sorted arrays OR in other words, given 2 sorted arrays, find all the elements which occur in both arrays.\n\nNOTE: For the purpose of this problem ( as also conveyed by the sample case ), assume that elements that appear more than once in both arrays should be included multiple times in the final output.",
+        "constraints": {
+          "minB": 1,
+          "maxB": 1000000,
+          "minA": 1,
+          "maxA": 1000000
+        },
+        "inputFormat": "The first argument is an integer array A.\nThe second argument is an integer array B.",
+        "outputFormat": "Return an array of intersection of the two arrays.",
+        "examples": [
+          {
+            "A": [1, 2, 3,3,4,5,6],
+            "B": [3,3,5],
+            "output":[3 ,3 ,5]
+          },
+          {
+            "A": [1, 2, 3,3,4,5,6],
+            "B": [3,5],
+            "output":[3,5]
+          }
+        ]
+    },
+    {
+            "title": "Merge Two Sorted Lists II",
+            "topic": "Two Pointers",
+            "difficulty": "Medium",
+            "description": "Given two sorted integer arrays A and B, merge B into A as one sorted array.\n\nNote: You have to modify the array A to contain the merge of A and B. Do not output anything in your code.\n\nIf the number of elements initialized in A and B is m and n respectively, the resulting size of array A after your code is executed should be m + n",
+            "constraints": {
+              "minB": 1,
+              "maxB": 100000,
+              "minA": 1,
+              "maxA": 100000
+            },
+            "inputFormat": "The first argument is an integer array A.\nThe second argument is an integer array B.",
+            "outputFormat": "Update the array A.",
+            "examples": [
+              {
+                "A": [1, 5, 8],
+                "B": [6, 9],
+                "output":[1,5,6,8,9]
+              }
+            ]
+        },
+        {
+            "title": "Distribute Candy",
+            "topic": "Greedy Algorithm",
+            "difficulty": "Medium",
+            "description": "N children are standing in a line. Each child is assigned a rating value.\n\nYou are giving candies to these children subjected to the following requirements:\n\n1. Each child must have at least one candy.\n2. Children with a higher rating get more candies than their neighbors.\n\nWhat is the minimum number of candies you must give?",
+            "constraints": {
+              "minN": 1,
+              "maxN": 100000,
+              "minA": -1000000000,
+              "maxA": 1000000000
+            },
+            "inputFormat": "The first and only argument is an integer array A representing the rating of children.",
+            "outputFormat": "Return an integer representing the minimum candies to be given.",
+            "examples": [
+              {
+                "A": [1, 2],
+                "output": 3
+              },
+              {
+                "A": [1, 5, 2, 1],
+                "output": 7
+              }
+            ]
+        },
+        {
+          "title": "Reverse String",
+          "topic": "Stacks And Queues",
+          "difficulty": "Easy",
+          "description": "Given a string S, reverse the string using a stack.",
+          "constraints": {
+            "minLength": 1,
+            "maxLength": 100000
+          },
+          "inputFormat": "The first and only argument is a string S.",
+          "outputFormat": "Return the reversed string.",
+          "examples": [
+            {
+              "S": "abc",
+              "output": "cba"
+            },
+            {
+              "S": "hello",
+              "output": "olleh"
+            }
+          ]
+        },
+        {
+          "title": "Reverse Linked List",
+          "topic": "Linked Lists",
+          "difficulty": "Easy",
+          "description": "Reverse a linked list. Do it in-place and in one-pass.\n\nFor example:\n\nGiven 1->2->3->4->5->NULL,\n\nreturn 5->4->3->2->1->NULL.",
+          "constraints": {
+            "minLength": 0,
+            "maxLength": 100000
+          },
+          "inputFormat": "The first and only argument is the head of a singly linked list.",
+          "outputFormat": "Return the head of the reversed linked list.",
+          "examples": [
+            {
+              "head": [1, 2, 3, 4, 5],
+              "output": [5, 4, 3, 2, 1]
+            },
+            {
+              "head": [1, 2],
+              "output": [2, 1]
+            },
+            {
+              "head": [],
+              "output": []
+            }
+          ]
+        },
+        {
+          "title": "Product of Digits",
+          "topic": "Math",
+          "difficulty": "Very Easy",
+          "description": "Given an integer A, find the product of all of its digits.",
+          "constraints": {
+            "minA": 0,
+            "maxA": 1000000000
+          },
+          "inputFormat": "The first and only argument is an integer A.",
+          "outputFormat": "Return an integer representing the product of all the digits of A.",
+          "examples": [
+            {
+              "A": 111,
+              "output": 1
+            },
+            {
+              "A": 123,
+              "output": 6
+            }
+          ]
+        },
+        {
+          "title": "Swap List Nodes in Pairs",
+          "topic": "Linked Lists",
+          "difficulty": "Easy",
+          "description": "Given a linked list A, swap every two adjacent nodes and return its head.\n\nNOTE: Your algorithm should use only constant space. You may not modify the values in the list; only nodes themselves can be changed.",
+          "constraints": {
+            "minLength": 1,
+            "maxLength": 1000000
+          },
+          "inputFormat": "The first and the only argument of input contains a pointer to the head of the given linked list.",
+          "outputFormat": "Return a pointer to the head of the modified linked list.",
+          "examples": [
+            {
+              "A": [1, 2, 3, 4],
+              "output": [2, 1, 4, 3]
+            },
+            {
+              "A": [7, 2, 1],
+              "output": [2, 7, 1]
+            }
+          ]
+        },
+        {
+          "title": "2 Sum",
+          "topic": "Two Pointers",
+          "difficulty": "Easy",
+          "description": "Given an array of integers, find two numbers such that they add up to a specific target number.\n\nThe function twoSum should return indices of the two numbers such that they add up to the target, where index1 < index2. Please note that your returned answers (both index1 and index2) are not zero-based. Put both these numbers in order in an array and return the array from your function (Looking at the function signature will make things clearer). Note that, if no pair exists, return an empty list.\n\nIf multiple solutions exist, output the one where index2 is minimum. If there are multiple solutions with the minimum index2, choose the one with minimum index1 out of them.",
+          "constraints": {
+            "minA": 1,
+            "maxA": 100000,
+            "minAi": -100000000,
+            "maxAi": 100000000,
+            "minB": -100000000,
+            "maxB": 10000000
+          },
+          "inputFormat": "The first argument is an integer array A.\nThe second argument is an integer B.",
+          "outputFormat": "Return an array of integers, representing the answer.",
+          "examples": [
+            {
+              "A": [2, 7, 11, 15],
+              "B": 9,
+              "output": [1, 2]
+            }
+          ]
+        },
+        {
+          "title": "Reverse the String",
+          "topic": "Strings",
+          "difficulty": "Very Easy",
+          "description": "You are given a string A of size N. Return the string A after reversing the string word by word.\n\nNOTE:\n\n1. A sequence of non-space characters constitutes a word.\n2. Your reversed string should not contain leading or trailing spaces, even if it is present in the input string.\n3. If there are multiple spaces between words, reduce them to a single space in the reversed string.",
+          "constraints": {
+            "minN": 1,
+            "maxN": 300000
+          },
+          "inputFormat": "The only argument given is string A.",
+          "outputFormat": "Return the string A after reversing the string word by word.",
+          "examples": [
+            {
+              "A": "the sky is blue",
+              "output": "blue is sky the"
+            },
+            {
+              "A": "this is ib",
+              "output": "ib is this"
+            }
+          ]
+        },
+        {
+          "title": "Majority Element",
+          "topic": "Greedy Algorithm",
+          "difficulty": "Easy",
+          "description": "Given an array of size N, find the majority element. The majority element is the element that appears more than floor(N/2) times. You may assume that the array is non-empty and the majority element always exists in the array.",
+          "constraints": {
+            "minN": 1,
+            "maxN": 1000000,
+            "minAi": 1,
+            "maxAi": 1000000000
+          },
+          "inputFormat": "The first argument is an integer array A.",
+          "outputFormat": "Return the majority element.",
+          "examples": [
+            {
+              "A": [2, 1, 2],
+              "output": 2
+            }
+          ]
+        }
+                      
+  ]

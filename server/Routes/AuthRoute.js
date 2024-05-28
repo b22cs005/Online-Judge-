@@ -1,0 +1,11 @@
+const { SignUp,LogIn,googleLogin,googleCallback,G_Login_succ,G_Logout } = require("../Controllers/AuthController");
+const router = require("express").Router();
+const {userVerification} = require("../Middlewares/AuthMiddleware");
+router.post("/signup",SignUp);
+router.post("/login",LogIn);
+router.post('/',userVerification);
+router.get('/auth/google',googleLogin);
+router.get('/auth/google/callback',googleCallback);
+router.get('/login/success',G_Login_succ);
+router.get('/logout',G_Logout);
+module.exports = router;

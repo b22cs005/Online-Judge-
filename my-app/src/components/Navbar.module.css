@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:global(*) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.logo, .btnModal1, .btnModal2 {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.logo {
+    margin-right: 750px; 
+    width: 200px; 
+    height: auto;
+    cursor: pointer;
+}
+
+.btnModal1 {
+    margin-right: 30px;
+    white-space: nowrap;
+}
+
+.btnModal2 {
+    margin-right: 10px;
+    white-space: nowrap; /* Prevents line breaks */
+}
+
+.homeNav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: lightgray; /* Add background color */
+    height:80px;
+}
+
+.btnModal1, .btnModal2, .btn,.googlebtn {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 9px 25px;
+    background-color: #90645E;
+    border: none;
+    color:white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btnModal1:hover, .btnModal2:hover, .btn:hover,.googlebtn:hover {
+    background-color:#B28E89;
+}
+
+.modal, .overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    overflow:auto;
+    z-index:10000;
+}
+
+.overlay {
+    background: rgba(49, 49, 49, 0.8);
+    z-index:9999;
+}
+
+.modalContent {
+    background: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 14px 28px;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    z-index:10001;
+}
+
+.formElement {
+    display: block;
+    margin-bottom: 30px;
+}
+
+.link {
+    background-color: transparent; 
+    border: none; 
+    font-size: 16px; 
+    color: #90645E; 
+    text-decoration: underline; 
+    cursor: pointer;
+    transition: color 0.3s ease; 
+}
+
+.link:hover {
+    color: black; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 16px);
+    height: 32px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #90645E;
+}
+
+.googlebtn{
+    margin-top: 15px;
+}
+.googlesignin{
+    display:flex;
+    align-items: center;
+}
+.homePage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    background-color: lightgray;
+    padding:10px;
+    height:80px;
+}
+.logoGoogle{
+    margin-right:30px;
+    width:200px;
+    height:auto;
+    cursor:pointer;
+}
+.user {
+    margin-right: 50px;
+}
+
+.btnLogout {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 9px 25px;
+    background-color: #90645E;
+    color:white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btnLogout:hover {
+    background-color: #b28e89;
+}
+.btnHome{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    margin-right: 50px;
+    border:none;
+    background-color: lightgray;
+    transition:all 0.3s ease 0s;
+    padding:31px;
+    color:#90645E;
+
+}
+.btnHome:hover{
+    color:white;
+    background-color:#b28e89;
+}
