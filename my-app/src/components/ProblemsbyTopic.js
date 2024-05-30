@@ -41,7 +41,6 @@ const ProblemsbyTopic = () => {
         <Carousel responsive={responsive} className="cardWrapper">
           {items.map((item, index) => {
             const color = colors[index % colors.length];
-            console.log(`Title: ${item.title}, Color: ${color}`);
             return (
               <div className="ag-courses_item" key={index}>
                 <a href="#" className="ag-courses-item_link">

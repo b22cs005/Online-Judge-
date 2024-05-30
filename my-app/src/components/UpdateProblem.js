@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './CreateProblem.css';
+import {useNavigate,useParams} from "react-router-dom";
 
-const ProblemForm = () => {
+const UpdateProblemForm = () => {
+  const navigate = useNavigate();
   const handleError = (err) => {
     toast.error(err, {
       position: "bottom-left",
@@ -15,7 +17,7 @@ const ProblemForm = () => {
     toast.success(msg, {
       position: "bottom-right",
     });
-
+  const {id} = useParams();
   const [problem, setProblem] = useState({
     title: "",
     topic: "",
@@ -27,7 +29,22 @@ const ProblemForm = () => {
     examples: []
   });
 
-  const { title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples } = problem;
+  useEffect(()=>{
+    const getProblem = async () => {
+      try{
+        const response = await axios.get(`http://localhost:4000/problems/${id}`);
+        console.log("response",response.data.p_by_id);
+        const problem = response.data.p_by_id;
+        setProblem(problem);
+      }
+      catch(error){
+        console.error("Error fetching problems",error);
+      }
+    };
+    getProblem();
+  },[id]);
+
+  const {title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples } = problem;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -87,11 +104,14 @@ const ProblemForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/problems/add", { ...problem });
+      const { data } = await axios.put(`http://localhost:4000/problems/${id}`, { ...problem });
       console.log(data);
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
+        setTimeout(() => {
+          navigate('/problems');
+        }, 2000);
       } else {
         handleError(message);
       }
@@ -116,7 +136,7 @@ const ProblemForm = () => {
 
   return (
     <div className="page-container">
-      <h2>Create Your Own Problem</h2>
+      <h2>Update Problem</h2>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div>
@@ -197,4 +217,4 @@ const ProblemForm = () => {
   );
 };
 
-export default ProblemForm;
+export default UpdateProblemForm;

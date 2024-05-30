@@ -8,6 +8,8 @@
     background-color: #f0f0f0;
     position:relative;
     overflow:hidden;
+    height:100vh;
+    
   }
   
   .header {
@@ -75,6 +77,15 @@
   }
 
   .createBtn:hover{
+    background-color: #b28e89;
+  }
+
+  .deleteBtn{
+    border:none;
+    background-color: white;
+  }
+
+  .deleteBtn:hover{
     background-color: #b28e89;
   }
   
