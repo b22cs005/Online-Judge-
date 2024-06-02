@@ -44,6 +44,13 @@ const ProblemForm = () => {
     }));
   };
 
+  const handleDeleteConstraint = (index) => {
+    setProblem((prevProblem)=>({
+      ...prevProblem,
+      constraints:prevProblem.constraints.filter((_,i)=>i!==index),
+    }));
+  };
+
   const handleConstraintChange = (index, value) => {
     const newConstraints = [...problem.constraints];
     newConstraints[index] = value;
@@ -54,6 +61,13 @@ const ProblemForm = () => {
     setProblem((prevProblem) => ({
       ...prevProblem,
       examples: [...prevProblem.examples, { input: [], output: "" }]
+    }));
+  };
+
+  const handleDeleteExample = (index) => {
+    setProblem((prevProblem)=>({
+      ...prevProblem,
+      examples:prevProblem.examples.filter((_,i)=>i!==index),
     }));
   };
 
@@ -68,6 +82,16 @@ const ProblemForm = () => {
     const newExamples = problem.examples.map((example, i) =>
       i === index
         ? { ...example, input: [...example.input, ""] }
+        : example
+    );
+    setProblem((prevProblem) => ({ ...prevProblem, examples: newExamples }));
+  };
+
+
+  const handleDeleteExampleInput = (exampleIndex, inputIndex) => {
+    const newExamples = problem.examples.map((example, i) =>
+      i === exampleIndex
+        ? { ...example, input: example.input.filter((_, j) => j !== inputIndex) }
         : example
     );
     setProblem((prevProblem) => ({ ...prevProblem, examples: newExamples }));
@@ -153,13 +177,14 @@ const ProblemForm = () => {
           <div>
             <label>Constraints:</label>
             {constraints.map((constraint, index) => (
-              <div key={index}>
+              <div key={index} className={styles.inputBox}>
                 <input
                   type="text"
                   value={constraint}
                   onChange={(e) => handleConstraintChange(index, e.target.value)}
                   required
                 />
+                <button className={styles.cross} onClick={()=>handleDeleteConstraint(index)}>&#10060;</button>
               </div>
             ))}
             <button type="button" onClick={handleAddConstraint} className={styles.btn}>Add Constraint</button>
@@ -172,6 +197,7 @@ const ProblemForm = () => {
                   <label>Inputs:</label>
                   <div className="example-inputs">
                     {example.input.map((input, i) => (
+                      <div className={styles.inputBox}>
                       <input
                         key={i}
                         type="text"
@@ -179,9 +205,11 @@ const ProblemForm = () => {
                         onChange={(e) => handleExampleInputChange(index, i, e.target.value)}
                         required
                       />
+                      <button className={styles.cross} onClick={()=>handleDeleteExampleInput(index,i)}>&#10060;</button>
+                      </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => handleAddExampleInput(index)} className="btn">Add Input</button>
+                  <button type="button" onClick={() => handleAddExampleInput(index)} className={styles.btn}>Add Input</button>
                 </div>
                 <div>
                   <label>Output:</label>
@@ -192,6 +220,7 @@ const ProblemForm = () => {
                     required
                   />
                 </div>
+                <button className={styles.cross} onClick={()=>{handleDeleteExample(index)}}>&#10060;</button>
               </div>
             ))}
             <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>

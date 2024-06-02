@@ -7,9 +7,7 @@
     font-style: normal;
     background-color: #f0f0f0;
     position:relative;
-    overflow:hidden;
-    height:100vh;
-    
+    overflow: auto;
   }
   
   .header {
@@ -110,11 +108,36 @@
   border:none;
   position:absolute;
   left:5%;
-  top:5%;
+  top:3%;
+  padding:10px;
 }
 
 .arrowBack:hover{
   background-color: gray;
   border-radius: 50%;
+}
+
+.filterDifficulty{
+  position: absolute;
+  left:80%;
+  margin-top: 100px; 
+}
+
+.selectDifficulty{
+  padding:9px 25px;
+  border-radius: 50px;
+  border-color: #90645E;
+}
+
+.filterTopic{
+  position:absolute;
+  left:80%;
+  margin-top: 200px;
+}
+
+.selectTopic{
+  padding:9px 25px;
+  border-radius:50px;
+  border-color: #90645E;
 }
   

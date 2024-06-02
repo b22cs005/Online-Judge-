@@ -108,9 +108,21 @@
   position:absolute;
   left:5%;
   top:5%;
+  padding:10px;
 }
 
 .arrowBack:hover{
   background-color: gray;
   border-radius: 50%;
+}
+
+.cross{
+  height:30px;
+  border:none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.inputBox{
+  display:flex;
 }

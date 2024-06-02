@@ -59,6 +59,13 @@ const UpdateProblemForm = () => {
     }));
   };
 
+  const handleDeleteConstraint = (index) => {
+    setProblem((prevProblem)=>({
+      ...prevProblem,
+      constraints:prevProblem.constraints.filter((_,i)=>i!==index),
+    }));
+  };
+
   const handleConstraintChange = (index, value) => {
     const newConstraints = [...problem.constraints];
     newConstraints[index] = value;
@@ -69,6 +76,13 @@ const UpdateProblemForm = () => {
     setProblem((prevProblem) => ({
       ...prevProblem,
       examples: [...prevProblem.examples, { input: [], output: "" }]
+    }));
+  };
+
+  const handleDeleteExample = (index) => {
+    setProblem((prevProblem)=>({
+      ...prevProblem,
+      examples:prevProblem.examples.filter((_,i)=>i!==index),
     }));
   };
 
@@ -83,6 +97,15 @@ const UpdateProblemForm = () => {
     const newExamples = problem.examples.map((example, i) =>
       i === index
         ? { ...example, input: [...example.input, ""] }
+        : example
+    );
+    setProblem((prevProblem) => ({ ...prevProblem, examples: newExamples }));
+  };
+
+  const handleDeleteExampleInput = (exampleIndex, inputIndex) => {
+    const newExamples = problem.examples.map((example, i) =>
+      i === exampleIndex
+        ? { ...example, input: example.input.filter((_, j) => j !== inputIndex) }
         : example
     );
     setProblem((prevProblem) => ({ ...prevProblem, examples: newExamples }));
@@ -137,86 +160,91 @@ const UpdateProblemForm = () => {
 
   return (
     <div className={styles.pageContainer}>
-      <h2>Update Problem</h2>
-      <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
-      <div className={styles.formContainer}>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Title:</label>
-            <input type="text" name="title" value={title} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Topic:</label>
-            <input type="text" name="topic" value={topic} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Difficulty:</label>
-            <input type="text" name="difficulty" value={difficulty} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Description:</label>
-            <textarea name="description" value={description} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Input Format:</label>
-            <textarea name="inputFormat" value={inputFormat} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Output Format:</label>
-            <textarea name="outputFormat" value={outputFormat} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Constraints:</label>
-            {constraints.map((constraint, index) => (
-              <div key={index}>
+    <h2>Update Problem</h2>
+  <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Title:</label>
+          <input type="text" name="title" value={title} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Topic:</label>
+          <input type="text" name="topic" value={topic} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Difficulty:</label>
+          <input type="text" name="difficulty" value={difficulty} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea name="description" value={description} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Input Format:</label>
+          <textarea name="inputFormat" value={inputFormat} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Output Format:</label>
+          <textarea name="outputFormat" value={outputFormat} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Constraints:</label>
+          {constraints.map((constraint, index) => (
+            <div key={index} className={styles.inputBox}>
+              <input
+                type="text"
+                value={constraint}
+                onChange={(e) => handleConstraintChange(index, e.target.value)}
+                required
+              />
+              <button className={styles.cross} onClick={()=>handleDeleteConstraint(index)}>&#10060;</button>
+            </div>
+          ))}
+          <button type="button" onClick={handleAddConstraint} className={styles.btn}>Add Constraint</button>
+        </div>
+        <div>
+          <label>Examples:</label>
+          {examples.map((example, index) => (
+            <div key={index} className="example-container">
+              <div>
+                <label>Inputs:</label>
+                <div className="example-inputs">
+                  {example.input.map((input, i) => (
+                    <div className={styles.inputBox}>
+                    <input
+                      key={i}
+                      type="text"
+                      value={input}
+                      onChange={(e) => handleExampleInputChange(index, i, e.target.value)}
+                      required
+                    />
+                    <button className={styles.cross} onClick={()=>handleDeleteExampleInput(index,i)}>&#10060;</button>
+                    </div>
+                  ))}
+                </div>
+                <button type="button" onClick={() => handleAddExampleInput(index)} className={styles.btn}>Add Input</button>
+              </div>
+              <div>
+                <label>Output:</label>
                 <input
                   type="text"
-                  value={constraint}
-                  onChange={(e) => handleConstraintChange(index, e.target.value)}
+                  value={example.output}
+                  onChange={(e) => handleExampleChange(index, "output", e.target.value)}
                   required
                 />
               </div>
-            ))}
-            <button type="button" onClick={handleAddConstraint} className={styles.btn}>Add Constraint</button>
-          </div>
-          <div>
-            <label>Examples:</label>
-            {examples.map((example, index) => (
-              <div key={index} className="example-container">
-                <div>
-                  <label>Inputs:</label>
-                  <div className="example-inputs">
-                    {example.input.map((input, i) => (
-                      <input
-                        key={i}
-                        type="text"
-                        value={input}
-                        onChange={(e) => handleExampleInputChange(index, i, e.target.value)}
-                        required
-                      />
-                    ))}
-                  </div>
-                  <button type="button" onClick={() => handleAddExampleInput(index)} className={styles.btn}>Add Input</button>
-                </div>
-                <div>
-                  <label>Output:</label>
-                  <input
-                    type="text"
-                    value={example.output}
-                    onChange={(e) => handleExampleChange(index, "output", e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-            ))}
-            <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
-          </div>
-          <button type="submit" className="btn">Submit</button>
-        </form>
-      </div>
-      <ToastContainer />
+              <button className={styles.cross} onClick={()=>{handleDeleteExample(index)}}>&#10060;</button>
+            </div>
+          ))}
+          <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
+        </div>
+        <button type="submit" className={styles.btn}>Submit</button>
+      </form>
     </div>
-  );
+    <ToastContainer />
+  </div>
+);
 };
 
 export default UpdateProblemForm;
