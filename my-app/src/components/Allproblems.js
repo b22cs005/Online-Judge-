@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const Allproblems = () => {
@@ -15,6 +16,9 @@ const Allproblems = () => {
   const navigate = useNavigate();
   const updateProblem = (id) => {
     navigate(`/update-problem/${id}`);
+  }
+  const solveProblem = (id) => {
+    navigate(`/solve-problem/${id}`);
   }
   const handleError = (err) => {
     toast.error(err, {
@@ -69,11 +73,12 @@ const Allproblems = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>All problems</h1>
+      <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/')}/></button>
       <button className={styles.createBtn} onClick={()=>navigate('/create-own-problem')}>Create Your Own Problem</button>
       <ul className={styles.problemsList}>
         {problems.map(problem => (
           <li key={problem._id} className={styles.problemCard}>
-            <h2 className={styles.problemTitle}>{problem.title}</h2>
+            <button className={styles.problemTitle} onClick={()=>solveProblem(problem._id)}>{problem.title}</button>
             <p className={styles.problemTopic}>Topic: {problem.topic}</p>
             <p className={styles.problemDifficulty}>Difficulty: {problem.difficulty}</p>
             <button className={styles.deleteBtn} onClick={() => deleteProblem(problem._id)}>

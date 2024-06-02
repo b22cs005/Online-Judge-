@@ -2,8 +2,9 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import './CreateProblem.css';
+import styles from './CreateProblem.module.css';
 import {useNavigate,useParams} from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UpdateProblemForm = () => {
   const navigate = useNavigate();
@@ -135,9 +136,10 @@ const UpdateProblemForm = () => {
   };
 
   return (
-    <div className="page-container">
+    <div className={styles.pageContainer}>
       <h2>Update Problem</h2>
-      <div className="form-container">
+      <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
+      <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Title:</label>
@@ -175,7 +177,7 @@ const UpdateProblemForm = () => {
                 />
               </div>
             ))}
-            <button type="button" onClick={handleAddConstraint} className="btn">Add Constraint</button>
+            <button type="button" onClick={handleAddConstraint} className={styles.btn}>Add Constraint</button>
           </div>
           <div>
             <label>Examples:</label>
@@ -194,7 +196,7 @@ const UpdateProblemForm = () => {
                       />
                     ))}
                   </div>
-                  <button type="button" onClick={() => handleAddExampleInput(index)} className="btn">Add Input</button>
+                  <button type="button" onClick={() => handleAddExampleInput(index)} className={styles.btn}>Add Input</button>
                 </div>
                 <div>
                   <label>Output:</label>
@@ -207,7 +209,7 @@ const UpdateProblemForm = () => {
                 </div>
               </div>
             ))}
-            <button type="button" onClick={handleAddExample} className="btn">Add Example</button>
+            <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
           </div>
           <button type="submit" className="btn">Submit</button>
         </form>

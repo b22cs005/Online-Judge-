@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container {
+  height: 100vh;
+  position: relative;
+}
+
+.problemDesc {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  width: 50%;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+}
+
+.codeEditor {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  width: 50%;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-left: 50%;
+  position: absolute;
+  top: 0;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+p, ul {
+  margin-bottom: 20px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.elementsList li {
+  list-style-type: disc;
+}
+
+.editor {
+  flex-grow: 1;
+  background-color: #f7fafc;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+}
+
+.run {
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(45deg, #ff6f61, #ff8e53);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.run:hover {
+  background: linear-gradient(45deg, #ff8e53, #ff6f61);
+}
+
+.outputbox {
+  background-color: #f7fafc;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.selectBox {
+  padding: 10px;
+  background: linear-gradient(45deg, #ff6f61, #ff8e53);
+  color: #fff;
+  border-radius: 10px;
+  border-color: white;
+}
+
+.selectBox:hover {
+  background: linear-gradient(45deg, #ff8e53, #ff6f61);
+}
+
+.option {
+  color: black;
+}

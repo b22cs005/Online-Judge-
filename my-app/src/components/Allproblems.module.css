@@ -24,7 +24,9 @@
     gap: 30px;
     list-style-type:none;
   }
-  
+  .problemsList li {
+    list-style-type: none; 
+}
   .problemCard {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -88,4 +90,31 @@
   .deleteBtn:hover{
     background-color: #b28e89;
   }
+
+ .problemTitle{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  border:none;
+  background-color: white;
+ }
+
+ .problemTitle:hover{
+  cursor:pointer;
+  background-color: #f8f9fa;
+  text-decoration: underline;
+ }
+
+ .arrowBack{
+  border:none;
+  position:absolute;
+  left:5%;
+  top:5%;
+}
+
+.arrowBack:hover{
+  background-color: gray;
+  border-radius: 50%;
+}
   

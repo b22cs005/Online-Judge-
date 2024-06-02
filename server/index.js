@@ -5,6 +5,7 @@ const app = express();
 require("dotenv").config();
 const authRoute = require("./Routes/AuthRoute");
 const problemRoute = require("./Routes/ProblemRoute");
+const compilerRoute = require("./Routes/CompilerRoute");
 const PORT = process.env.PORT;
 const MONGODB_URL = process.env.MONGODB_URL;
 const cookieParser = require("cookie-parser");
@@ -45,6 +46,7 @@ const startServer = async () => {
     // Routes
     app.use("/", authRoute);
     app.use("/", problemRoute);
+    app.use("/",compilerRoute);
 
     // Start the server
     app.listen(PORT, () => {

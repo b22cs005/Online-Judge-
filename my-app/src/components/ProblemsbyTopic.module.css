@@ -1,13 +1,12 @@
-/* ProblemsbyTopic.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .slideContainer {
   background-color: #f0f0f0;
   padding: 20px;
-  z-index:997;
+  z-index: 997;
 }
 
-.slideContainer h1{
+.slideContainer h1 {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -24,33 +23,36 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  
 }
 
-.ag-courses_item {
+.agCoursesItem {
   margin: 0 15px 30px;
   overflow: hidden;
   border-radius: 28px;
+  list-style-type: none !important;
 }
 
-.ag-courses-item_link {
+.agCoursesItemLink {
   display: block;
   padding: 30px 20px;
   background-color: #121212;
   overflow: hidden;
   text-decoration: none;
   position: relative;
-  color: #FFF; /* Ensure link text is white */
+
 }
 
-.ag-courses-item_link:hover {
+.agCoursesItemLink:hover {
   text-decoration: none;
   color: #FFF;
 }
 
-.ag-courses-item_link:hover .ag-courses-item_bg {
-  transform:scale(10);
+.agCoursesItemLink:hover .agCoursesItemBg {
+  transform: scale(10);
 }
-.ag-courses-item_title {
+
+.agCoursesItemTitle {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -66,7 +68,7 @@
   position: relative;
 }
 
-.ag-courses-item_bg{
+.agCoursesItemBg {
   height: 128px;
   width: 128px;
   z-index: 1;
@@ -78,35 +80,33 @@
 }
 
 @media only screen and (max-width: 979px) {
-  .ag-courses_item {
+  .agCoursesItem {
     flex-basis: calc(50% - 30px);
   }
 
-  .ag-courses-item_title {
+  .agCoursesItemTitle {
     font-size: 24px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .ag-format-container {
+  .agFormatContainer {
     width: 96%;
   }
 }
 
 @media only screen and (max-width: 639px) {
-  .ag-courses_item{
+  .agCoursesItem {
     flex-basis: 100%;
   }
 
-  .ag-courses-item_title {
+  .agCoursesItemTitle {
     min-height: 72px;
     line-height: 1;
     font-size: 24px;
   }
 
-  .ag-courses-item_link {
+  .agCoursesItemLink {
     padding: 22px 40px;
   }
 }
-
-

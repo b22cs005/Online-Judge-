@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import './CreateProblem.css';
+import styles from './CreateProblem.module.css';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from "react-router-dom";
 
 const ProblemForm = () => {
+  const navigate = useNavigate();
   const handleError = (err) => {
     toast.error(err, {
       position: "bottom-left",
@@ -92,6 +95,9 @@ const ProblemForm = () => {
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
+        setTimeout(() => {
+          navigate('/problems');
+        }, 2000);
       } else {
         handleError(message);
       }
@@ -115,9 +121,10 @@ const ProblemForm = () => {
   };
 
   return (
-    <div className="page-container">
+    <div className={styles.pageContainer}>
       <h2>Create Your Own Problem</h2>
-      <div className="form-container">
+    <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
+      <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Title:</label>
@@ -155,7 +162,7 @@ const ProblemForm = () => {
                 />
               </div>
             ))}
-            <button type="button" onClick={handleAddConstraint} className="btn">Add Constraint</button>
+            <button type="button" onClick={handleAddConstraint} className={styles.btn}>Add Constraint</button>
           </div>
           <div>
             <label>Examples:</label>
@@ -187,9 +194,9 @@ const ProblemForm = () => {
                 </div>
               </div>
             ))}
-            <button type="button" onClick={handleAddExample} className="btn">Add Example</button>
+            <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
           </div>
-          <button type="submit" className="btn">Submit</button>
+          <button type="submit" className={styles.btn}>Submit</button>
         </form>
       </div>
       <ToastContainer />

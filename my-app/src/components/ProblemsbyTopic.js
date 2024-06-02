@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import './ProblemsbyTopic.css';
+import styles from './ProblemsbyTopic.module.css';
 
 const ProblemsbyTopic = () => {
   const responsive = {
@@ -11,7 +11,7 @@ const ProblemsbyTopic = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -30,25 +30,26 @@ const ProblemsbyTopic = () => {
     { title: 'Stacks and Queues' },
     { title: 'Heaps' },
     { title: 'Graphs' },
+    { title: 'Two pointer' },
   ];
 
   const colors = ['#f9b234', '#3ecd5e', '#e44002', '#952aff', '#cd3e94', '#4c49ea'];
 
   return (
-    <section className="slideContainer">
+    <section className={styles.slideContainer}>
       <h1>Popular DSA Topics</h1>
-      <div className="slideContent">
-        <Carousel responsive={responsive} className="cardWrapper">
+      <div className={styles.slideContent}>
+        <Carousel responsive={responsive} className={styles.cardWrapper}>
           {items.map((item, index) => {
             const color = colors[index % colors.length];
             return (
-              <div className="ag-courses_item" key={index}>
-                <a href="#" className="ag-courses-item_link">
+              <div className={styles.agCoursesItem} key={index}>
+                <a href="#" className={styles.agCoursesItemLink}>
                   <div
-                    className="ag-courses-item_bg"
+                    className={styles.agCoursesItemBg}
                     style={{ backgroundColor: color }}
                   ></div>
-                  <div className="ag-courses-item_title">{item.title}</div>
+                  <div className={styles.agCoursesItemTitle}>{item.title}</div>
                 </a>
               </div>
             );
