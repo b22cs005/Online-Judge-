@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import CreateProblem from './components/CreateProblem';
 import UpdateProblem from './components/UpdateProblem';
 import GetProblemDesc from './components/ProblemSolving/GetProblemDesc';
+import GetFilteredProblems from './components/GetFilteredProblems';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/create-own-problem' element={<CreateProblem/>}/>
         <Route path="/update-problem/:id" element={<UpdateProblem/>}/>
         <Route path="/solve-problem/:id"  element={<GetProblemDesc/>}/>
+        <Route path="/problems/:topic"  element={<GetFilteredProblems/>}/>
       </Routes>
     </div>
   );

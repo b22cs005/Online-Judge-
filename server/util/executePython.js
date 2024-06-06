@@ -7,12 +7,11 @@ if(!fs.existsSync(outputPython)){
     fs.mkdirSync(output,{recurisve:true});
 }*/
 
-module.exports.executePython = (filePath) => {
+module.exports.executePython = (filePath,inputFilePath) => {
     //const filename = path.basename(filePath);
-    console.log(filePath);
     return new Promise((resolve,reject) => {
      exec(
-        `python "${filePath}"`,
+        `python "${filePath}" < "${inputFilePath}"`,
         (error,stdout,stderr)=> {
             if (error){
                 reject(error);

@@ -57,7 +57,7 @@ ul {
 
 .run {
   text-align: center;
-  display: inline-flex;
+  display:flex;
   align-items: center;
   background: linear-gradient(45deg, #ff6f61, #ff8e53);
   color: #fff;
@@ -99,4 +99,8 @@ ul {
 
 .option {
   color: black;
+}
+
+.runCustomInput {
+  margin-bottom: 10px; 
 }

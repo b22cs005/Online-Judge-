@@ -11,12 +11,14 @@ const UpdateProblemForm = () => {
   const handleError = (err) => {
     toast.error(err, {
       position: "bottom-left",
+      containerId:"containerUpdate"
     });
   };
 
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-right",
+      containerId:"containerUpdate"
     });
   const {id} = useParams();
   const [problem, setProblem] = useState({
@@ -27,7 +29,9 @@ const UpdateProblemForm = () => {
     constraints: [],
     inputFormat: "",
     outputFormat: "",
-    examples: []
+    examples: [],
+    testCasesCpp:[],
+    testCasesPy:[]
   });
 
   useEffect(()=>{
@@ -45,11 +49,33 @@ const UpdateProblemForm = () => {
     getProblem();
   },[id]);
 
-  const {title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples } = problem;
+  console.log(problem.testCasesCpp);
+
+  const {title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples,testCasesCpp,testCasesPy} = problem;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProblem((prevProblem) => ({ ...prevProblem, [name]: value }));
+  };
+
+  const handleAddTestCase = (type) => {
+    setProblem((prevProblem) => ({
+      ...prevProblem,
+      [type]: [...prevProblem[type], { Input: "", Output: "" }]
+    }));
+  };
+
+  const handleDeleteTestCase = (type, index) => {
+    setProblem((prevProblem) => ({
+      ...prevProblem,
+      [type]: prevProblem[type].filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleTestCaseInputChange = (type, index, field, value) => {
+    const newTestCases = [...problem[type]];
+    newTestCases[index][field] = value;
+    setProblem((prevProblem) => ({ ...prevProblem, [type]: newTestCases }));
   };
 
   const handleAddConstraint = () => {
@@ -154,13 +180,15 @@ const UpdateProblemForm = () => {
       constraints: [],
       inputFormat: "",
       outputFormat: "",
-      examples: []
+      examples: [],
+      testCasesCpp:[],
+      testCasesPy:[]
     });
   };
 
   return (
     <div className={styles.pageContainer}>
-    <h2>Update Problem</h2>
+    <h2>Create Your Own Problem</h2>
   <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit}>
@@ -206,10 +234,10 @@ const UpdateProblemForm = () => {
         <div>
           <label>Examples:</label>
           {examples.map((example, index) => (
-            <div key={index} className="example-container">
+            <div key={index} className={styles.exampleContainer}>
               <div>
                 <label>Inputs:</label>
-                <div className="example-inputs">
+                <div className={styles.exampleInputs}>
                   {example.input.map((input, i) => (
                     <div className={styles.inputBox}>
                     <input
@@ -239,11 +267,49 @@ const UpdateProblemForm = () => {
           ))}
           <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
         </div>
+        <div>
+          <label>Test Cases for C++:</label>
+          {testCasesCpp.map((testCase, index) => (
+            <div key={index}>
+              <textarea
+                value={testCase.Input}
+                onChange={(e) => handleTestCaseInputChange('testCasesCpp', index, 'Input', e.target.value)}
+                placeholder="Input"
+              />
+              <textarea
+                value={testCase.Output}
+                onChange={(e) => handleTestCaseInputChange('testCasesCpp', index, 'Output', e.target.value)}
+                placeholder="Output"
+              />
+              <button type="button" className={styles.cross} onClick={() => handleDeleteTestCase('testCasesCpp', index)}>&#10060;</button>
+            </div>
+          ))}
+          <button type="button" className={styles.btn} onClick={() => handleAddTestCase('testCasesCpp')}>Add Test Case</button>
+        </div>
+        <div>
+          <label>Test Cases for Python:</label>
+          {testCasesPy.map((testCase, index) => (
+            <div key={index} >
+              <textarea
+                value={testCase.Input}
+                onChange={(e) => handleTestCaseInputChange('testCasesPy', index, 'Input', e.target.value)}
+                placeholder="Input"
+              />
+              <textarea
+                value={testCase.Output}
+                onChange={(e) => handleTestCaseInputChange('testCasesPy', index, 'Output', e.target.value)}
+                placeholder="Output"
+              />
+              <button type="button" className={styles.cross} onClick={() => handleDeleteTestCase('testCasesPy', index)}>&#10060;</button>
+            </div>
+          ))}
+          <button type="button" className={styles.btn} onClick={() => handleAddTestCase('testCasesPy')}>Add Test Case</button>
+        </div>
         <button type="submit" className={styles.btn}>Submit</button>
       </form>
     </div>
-    <ToastContainer />
-  </div>
+    <ToastContainer containerId={"containerCreate"}/>
+  </div> 
 );
 };
 

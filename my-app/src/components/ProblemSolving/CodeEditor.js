@@ -30,22 +30,19 @@ const defaultCodes = {
       // Return 0 to indicate successful execution
       return 0;
   }`,
-  py:`
+  py: `
 # This is a simple Python program
 print("Hello World!")`,
-  /*java:`
-  public class Main {
-      public static void main(String[] args) {
-          // Print "Hello World" to the console
-          System.out.println("Hello World");
-      }
-  }'*/
 };
 
-function CodeEditor() {
+function CodeEditor({ problemId }) {
   const [code, setCode] = useState(defaultCodes.cpp);
   const [language, setLanguage] = useState('cpp');
   const [output, setOutput] = useState('');
+  const [input, setInput] = useState('');
+  const [option, setOption] = useState('');
+  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(null);
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -55,19 +52,47 @@ function CodeEditor() {
     setCode(defaultCodes[language]);
   }, [language]);
 
-  const handleSubmit = async () => {
+  const handleRunCustomInput = async () => {
     const payload = {
       language: language,
-      code
+      code,
+      input
     };
-
     try {
       const { data } = await axios.post('http://localhost:4000/run', payload);
       console.log(data);
       setOutput(data.output);
+      console.log(data.output);
     } catch (error) {
       console.log(error.response);
     }
+  }
+
+  const handleSubmitCode = async () => {
+    setOption('');
+    setOutput('');
+    const payload = {
+      language: language,
+      code
+    };
+    try {
+      const { data } = await axios.post(`http://localhost:4000/submit/${problemId}`, payload);
+      setSuccess(data.success);
+      setMessage(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
+    } catch (error) {
+      console.log(error.response);
+      setSuccess(false);
+      setMessage('An error occurred while submitting the code.');
+    }
+  }
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  }
+
+  const handleOptionChange = (selectedOption) => {
+    setOption(selectedOption);
+    setMessage('');
   }
 
   return (
@@ -102,20 +127,65 @@ function CodeEditor() {
         </div>
       </div>
       <div className={styles.row}>
-        <button onClick={handleSubmit} type="button" className={styles.run}>
-          Run
+        <button 
+          onClick={() => handleOptionChange('runCustomInput')} 
+          type="button" 
+          className={`${styles.run} ${styles.runCustomInput}`}
+        >
+          Run Custom Input
+        </button>
+        <button 
+          onClick={handleSubmitCode} 
+          type="button" 
+          id={styles.hidden}
+          className={styles.run}
+        >
+          Run on Hidden Test Cases
         </button>
       </div>
-      {output &&
+      {option === 'runCustomInput' && (
+        <>
+          <div className={styles.row}>
+            <h3 className={styles.inputHeading}>Input</h3>
+            <textarea 
+              className={styles.outputbox} 
+              placeholder="Enter your input here..."
+              rows="5"
+              cols="50"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.row}>
+            <button onClick={handleRunCustomInput} type="button" className={styles.run}>
+              Run
+            </button>
+          </div>
+        </>
+      )}
+      {output && (
         <div className={styles.row}>
+          <h3 className={styles.inputHeading}>Output</h3>
           <div className={styles.outputbox}>
-            <p style={{
+            <div style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 12,
-            }}>{output}</p>
+              whiteSpace: 'pre-wrap', 
+              height: 'auto', 
+              minHeight: '200px', 
+              overflowY: 'auto' 
+            }}>
+              {output}
+            </div>
           </div>
         </div>
-      }
+      )}
+      {message && (
+        <div className={styles.row}>
+          <div className={styles.messageBox} style={{ backgroundColor: success ? '#d4edda' : '#f8d7da' }}>
+            <p>{message}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

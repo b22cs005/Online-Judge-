@@ -59,12 +59,14 @@ const Navbar = () => {
   const handleError = (err) => {
     toast.error(err, {
       position: "bottom-left",
+      containerId:"containerNavbar"
     });
   };
 
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-right",
+      containerId:"containerNavbar"
     });
 
   return (
@@ -116,7 +118,7 @@ const Navbar = () => {
         handleSuccess={handleSuccess}
         closeSignupModalAndOpenLoginModal={closeSignupModalAndOpenLoginModal}
       />
-      <ToastContainer />
+      <ToastContainer containerId={"containerNavbar"} />
     </>
   );
 };

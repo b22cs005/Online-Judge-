@@ -65,12 +65,12 @@
     right: 0;
     position: fixed;
     overflow:auto;
-    z-index:10000;
+    z-index:5000;
 }
 
 .overlay {
     background: rgba(49, 49, 49, 0.8);
-    z-index:9999;
+    z-index:4999;
 }
 
 .modalContent {
@@ -86,7 +86,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 250px;
-    z-index:10001;
+    z-index:5001;
 }
 
 .formElement {

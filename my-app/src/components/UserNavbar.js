@@ -16,6 +16,7 @@ const UserNavbar = ({toggleUserLogin}) => {
             {withCredentials:true}
         );
         const {status,user}=data;
+        console.log(status);
         setUsername(user);
     };
     verifyCookie();

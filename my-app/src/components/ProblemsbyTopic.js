@@ -2,8 +2,13 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './ProblemsbyTopic.module.css';
+import {useNavigate} from 'react-router-dom';
 
 const ProblemsbyTopic = () => {
+  const navigate = useNavigate();
+  const topicWiseProblems = (topic) => {
+     navigate(`/problems/${topic}`);
+  }
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -31,6 +36,7 @@ const ProblemsbyTopic = () => {
     { title: 'Heaps' },
     { title: 'Graphs' },
     { title: 'Two pointer' },
+    { title: 'Math' },
   ];
 
   const colors = ['#f9b234', '#3ecd5e', '#e44002', '#952aff', '#cd3e94', '#4c49ea'];
@@ -44,7 +50,7 @@ const ProblemsbyTopic = () => {
             const color = colors[index % colors.length];
             return (
               <div className={styles.agCoursesItem} key={index}>
-                <a href="#" className={styles.agCoursesItemLink}>
+                <a href="#" onClick={(e) => {e.preventDefault(); topicWiseProblems(item.title);}} className={styles.agCoursesItemLink}>
                   <div
                     className={styles.agCoursesItemBg}
                     style={{ backgroundColor: color }}

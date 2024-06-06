@@ -67,7 +67,7 @@ const GetProblemDesc = () => {
         ))}
       </div>
       <div className={styles.codeEditor}>
-        <CodeEditor />
+        <CodeEditor problemId={problem._id} />
       </div>
     </div>
   )

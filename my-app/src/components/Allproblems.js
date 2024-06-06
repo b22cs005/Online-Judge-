@@ -26,12 +26,14 @@ const Allproblems = () => {
   const handleError = (err) => {
     toast.error(err, {
       position: "bottom-left",
+      containerId:"containerAll"
     });
   };
   
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-right",
+      containerId:"containerAll"
     });
 
     
@@ -122,6 +124,7 @@ const Allproblems = () => {
           <option value="Hashing">Hashing</option>
           <option value="Heaps and Maps">Heaps and Maps</option>
           <option value="Linked Lists">Linked Lists</option>
+          <option value="Math">Math</option>
           <option value="Stacks and Queues">Stacks and Queues</option>
           <option value="Strings">Strings</option>
           <option value="Trees">Trees</option>
@@ -143,7 +146,7 @@ const Allproblems = () => {
           </li>
         ))}
       </ul>
-      <ToastContainer/>
+      <ToastContainer containerId={"containerAll"}/>
     </div>
   );
 };

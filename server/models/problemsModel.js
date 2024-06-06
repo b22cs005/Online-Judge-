@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 
 const exampleSchema = new mongoose.Schema({}, { strict: false });
+const testCaseSchema = new mongoose.Schema({},{ strict: false});
 const problemSchema = new mongoose.Schema({
   title: {type:String,unique:true},
   topic: String,
@@ -10,7 +11,9 @@ const problemSchema = new mongoose.Schema({
   constraints: [String], 
   inputFormat: String,
   outputFormat: String,
-  examples: [exampleSchema] 
+  examples: [exampleSchema], 
+  testCasesCpp:[testCaseSchema],
+  testCasesPy:[testCaseSchema]
 });
 
 
