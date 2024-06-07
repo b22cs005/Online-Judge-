@@ -66,6 +66,7 @@ exports.PassVerdict = async (req,res) => {
                 break;
             case 'py':
                 output = await executePython(filePath, inputFilePath);
+                output=output.trim();
                 break;
             default:
                 throw new Error('Unsupported language');

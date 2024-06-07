@@ -1,4 +1,5 @@
 .env
 codes
 node_modules
-output
+outputs
+inputs
