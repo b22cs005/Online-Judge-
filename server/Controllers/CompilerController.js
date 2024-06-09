@@ -34,6 +34,9 @@ exports.Compiler = async (req,res) => {
     }
     catch(error){
         console.error(error);
+        if(error.message.includes('g++')){
+            return res.status(400).json({message:error.message});
+          }
         return res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -52,14 +55,12 @@ exports.PassVerdict = async (req,res) => {
        const testCases = language === 'cpp' || language === 'c' ? problem.testCasesCpp : problem.testCasesPy;
 
        for (const testCase of testCases) { 
-        console.log(testCase.Input);
         const inputFilePath = generateInputFile(testCase.Input);
         let output;
 
         switch (language) {
             case 'cpp':
                 output = await executeCpp(filePath, inputFilePath);
-                console.log(output);
                 break;
             case 'c':
                 output = await executeC(filePath, inputFilePath);
@@ -80,6 +81,9 @@ exports.PassVerdict = async (req,res) => {
     }
     catch(error){
       console.error(error);
+      if(error.message.includes('g++')){
+        return res.status(400).json({message:error.message});
+      }
       return res.status(500).json({ message: "Internal server error" });
     }
 }

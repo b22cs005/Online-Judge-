@@ -32,7 +32,6 @@ exports.delPfromDatabase = async (req,res) => {
   try{
      errors={};
      const id = req.params.id;
-     console.log(id);
      await Problem.findByIdAndDelete(id);
      res.status(201).json({ message: "Problem successfully deleted",success:true});
   }
@@ -62,7 +61,6 @@ exports.getProblem = async(req,res) => {
   try{
      const id = req.params.id;
      const p_by_id = await Problem.findById(id);
-     console.log("problem",p_by_id);
      res.status(201).json({p_by_id});
   }
   catch(error){

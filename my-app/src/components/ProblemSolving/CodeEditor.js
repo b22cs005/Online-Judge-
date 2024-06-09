@@ -65,7 +65,10 @@ function CodeEditor({ problemId }) {
       console.log(data.output);
     } catch (error) {
       console.log(error.response);
+      if (error.response.status === 400) {
+        setOutput(`Compilation Error: ${error.response.data.message}`);
     }
+  }
   }
 
   const handleSubmitCode = async () => {
@@ -94,11 +97,11 @@ function CodeEditor({ problemId }) {
     setOption(selectedOption);
     setMessage('');
   }
+  const lines = code.split('\n');
 
   return (
     <div className={styles.container}>
       <div className={styles.row}>
-        <h1 className={styles.name}>AlgoU Online Code Compiler</h1>
       </div>
       <div className={styles.row}>
         <select className={styles.selectBox} onChange={handleLanguageChange} value={language}>
@@ -108,12 +111,26 @@ function CodeEditor({ problemId }) {
         </select>
       </div>
       <div className={styles.row}>
-        <div className={styles.editor}>
+        <div className={styles.editor} style={{display:'flex'}}>
+        <div
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", monospace',
+          fontSize: 12,
+          marginRight: '10px',
+          textAlign: 'left',
+          userSelect: 'none',
+          color: '#999',
+        }}
+      >
+        {lines.map((_, index) => (
+          <div key={index}>{index + 1}</div>
+        ))}
+      </div>
           <Editor
+            className={styles.actualEditor}
             value={code}
             onValueChange={code => setCode(code)}
             highlight={code => highlight(code, languages.js)}
-            padding={10}
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 12,
@@ -171,7 +188,7 @@ function CodeEditor({ problemId }) {
               fontSize: 12,
               whiteSpace: 'pre-wrap', 
               height: 'auto', 
-              minHeight: '200px', 
+              minHeight: '100px', 
               overflowY: 'auto' 
             }}>
               {output}
