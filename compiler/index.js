@@ -3,14 +3,11 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
-const authRoute = require("./Routes/AuthRoute");
-const problemRoute = require("./Routes/ProblemRoute");
+const compilerRoute = require("./Routes/CompilerRoute");
 const PORT = process.env.PORT;
 const MONGODB_URL = process.env.MONGODB_URL;
 const cookieParser = require("cookie-parser");
-const session = require("\express-session");
-const passport = require("passport");
-require("./config/passport");
+
 
 const startServer = async () => {
   try {
@@ -31,20 +28,9 @@ const startServer = async () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
-    app.use(
-      session({
-        secret: "your_secret_key",
-        resave: false,
-        saveUninitialized: true,
-      })
-    );
-
-    app.use(passport.initialize());
-    app.use(passport.session());
 
     // Routes
-    app.use("/", authRoute);
-    app.use("/", problemRoute);
+    app.use("/", compilerRoute);
 
     // Start the server
     app.listen(PORT, () => {

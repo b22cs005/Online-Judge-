@@ -59,7 +59,7 @@ function CodeEditor({ problemId }) {
       input
     };
     try {
-      const { data } = await axios.post('http://localhost:4000/run', payload);
+      const { data } = await axios.post('http://localhost:5000/run', payload);
       console.log(data);
       setOutput(data.output);
       console.log(data.output);
@@ -79,7 +79,7 @@ function CodeEditor({ problemId }) {
       code
     };
     try {
-      const { data } = await axios.post(`http://localhost:4000/submit/${problemId}`, payload);
+      const { data } = await axios.post(`http://localhost:5000/submit/${problemId}`, payload);
       setSuccess(data.success);
       setMessage(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
     } catch (error) {

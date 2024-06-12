@@ -11,7 +11,7 @@ const UserNavbar = ({toggleUserLogin}) => {
     useEffect(()=>{
         const verifyCookie = async () =>{
         const {data} = await axios.post(
-            "http://localhost:4000",
+            "http://localhost:4000/",
             {},
             {withCredentials:true}
         );
