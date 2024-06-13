@@ -16,12 +16,12 @@ if (!fs.existsSync(outputC)) {
 
 module.exports.executeC = (filePath,inputFilePath) => {
     const jobId = path.basename(filePath).split(".")[0];
-    const outputCfilename = `${jobId}.exe`;
+    const outputCfilename = `${jobId}.out`;
     const outCPath = path.join(outputC, outputCfilename);
     
     return new Promise((resolve, reject) => {
         exec(
-            `gcc "${filePath}" -o "${outCPath}" && cd "${outputC}" && .\\${outputCfilename} < "${inputFilePath}"`,
+            `gcc "${filePath}" -o "${outCPath}" && cd "${outputC}" && ./${outputCfilename} < "${inputFilePath}"`,
             (error, stdout, stderr) => {
                 if (error) {
                     reject(error);

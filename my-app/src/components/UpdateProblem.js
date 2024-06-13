@@ -188,7 +188,7 @@ const UpdateProblemForm = () => {
 
   return (
     <div className={styles.pageContainer}>
-    <h2>Create Your Own Problem</h2>
+    <h2>Update Problem</h2>
   <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/problems')}/></button>
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit}>
