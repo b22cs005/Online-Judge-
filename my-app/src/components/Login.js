@@ -22,7 +22,7 @@ const Login = ({ modal1, toggleModal1, handleError, handleSuccess, closeLogInMod
     e.preventDefault();
     try {
       const { data } = await axios.post("http://localhost:4000/login", { ...loginValue }, { withCredentials: true });
-      const { success, message } = data;
+      const { success, message} = data;
       if (success) {
         handleSuccess(message);
         toggleUserLogin();

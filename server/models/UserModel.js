@@ -17,11 +17,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Your password is required"],
     },
+    solvedProblems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Problem' }]
 
 });
 
-userSchema.pre("save", async function () {
-    this.password = await bcrypt.hash(this.password, 12);
+userSchema.pre("save", async function (next) {
+    if (!this.isModified('password')) return next();  
+    try {
+      const salt = await bcrypt.genSalt(12);
+      this.password = await bcrypt.hash(this.password, salt);
+      next();
+    } catch (error) {
+      next(error);
+    }
   });
   
 module.exports = mongoose.model("User", userSchema);

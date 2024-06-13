@@ -6,6 +6,8 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 import axios from 'axios';
 import styles from './GetProblemDesc.module.css';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const defaultCodes = {
   cpp: `
@@ -35,7 +37,7 @@ const defaultCodes = {
 print("Hello World!")`,
 };
 
-function CodeEditor({ problemId }) {
+function CodeEditor({ problemId,userData}) {
   const [code, setCode] = useState(defaultCodes.cpp);
   const [language, setLanguage] = useState('cpp');
   const [output, setOutput] = useState('');
@@ -43,6 +45,20 @@ function CodeEditor({ problemId }) {
   const [option, setOption] = useState('');
   const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(null);
+  const [submit,setSubmit]=useState(false);
+
+  const handleError = (err) => {
+    toast.error(err, {
+      position: "bottom-left",
+      containerId: "containerAddToUser"
+    });
+  };
+
+  const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "bottom-right",
+      containerId: "containerAddToUser"
+    });
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -82,6 +98,9 @@ function CodeEditor({ problemId }) {
       const { data } = await axios.post(`http://localhost:5000/submit/${problemId}`, payload);
       setSuccess(data.success);
       setMessage(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
+      if(data.success===true){
+        setSubmit(true);
+      }
     } catch (error) {
       console.log(error.response);
       setSuccess(false);
@@ -98,6 +117,29 @@ function CodeEditor({ problemId }) {
     setMessage('');
   }
   const lines = code.split('\n');
+
+  const handleAddInUser = async()=>{
+      if(Object?.keys(userData)?.length <= 0){
+         alert("Please login or signup first!");
+      }
+      else{
+        try{
+          const {data} = await axios.post(`http://localhost:4000/addProblemInUser`,{
+            userId:userData._id,
+            problemId:problemId
+          })
+          const { success, message } = data;
+          if (success) {
+            handleSuccess(message);
+          }else{
+            handleError(message);
+          }
+        }
+        catch(error){
+          console.error(error);
+        }
+      }
+  }
 
   return (
     <div className={styles.container}>
@@ -203,6 +245,15 @@ function CodeEditor({ problemId }) {
           </div>
         </div>
       )}
+
+     {submit && (
+      <div className={styles.row}>
+        <button onClick={handleAddInUser} type="button" className={styles.run}>
+              Submit
+            </button>
+      </div>
+     )}
+     <ToastContainer containerId={"containerAddToUser"}/>
     </div>
   );
 }

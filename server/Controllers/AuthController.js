@@ -2,6 +2,7 @@ const User = require('../models/UserModel');
 const { createSecretToken } = require('../util/SecretToken');
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
+const googleUser = require('../models/googleusermodel');
 
 module.exports.SignUp = async (req, res, next) => {
     try {
@@ -125,3 +126,23 @@ module.exports.G_Logout = async(req,res,next) => {
       res.redirect("http://localhost:3000/");
     })
 }
+
+
+module.exports.UserProfile = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    let user = await User.findById(userId).populate('solvedProblems', 'title');
+    if (!user) {
+        user = await googleUser.findById(userId).populate('solvedProblems','title');
+          if (!user) {
+            errors.message = "No such user exists";
+            return res.status(400).json({ errors });
+          }
+       }
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};

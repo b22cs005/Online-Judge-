@@ -9,13 +9,11 @@ import UserNavbar from "./UserNavbar";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({userData,setUserData}) => {
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
-  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
-  console.log("response", userData);
 
   const getUser = async () => {
     try {
@@ -32,6 +30,7 @@ const Navbar = () => {
 
   const logout = () => {
     window.open("http://localhost:4000/logout", "_self");
+    setUserData({});
   };
 
   const toggleUserLogin = () => {
@@ -73,7 +72,7 @@ const Navbar = () => {
     <>
       <nav className={styles.navbar}>
         {userLogin ? (
-          <UserNavbar toggleUserLogin={toggleUserLogin} />
+          <UserNavbar toggleUserLogin={toggleUserLogin} setUserData={setUserData} />
         ) : Object?.keys(userData)?.length > 0 ? (
           <>
             <span className={styles.homePage}>
@@ -84,6 +83,9 @@ const Navbar = () => {
               </h4>
               <button onClick={() => navigate('/')} className={styles.btnHome}>
               Home
+            </button>
+            <button className={styles.btnHome} onClick={()=>navigate('/profile')}>
+              View Profile
             </button>
               <button className={styles.btnLogout} onClick={logout}>LOGOUT</button>
             </span>

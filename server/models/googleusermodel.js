@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     displayName: {
         type: String,
     },
+    solvedProblems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Problem' }]
 });
 
 module.exports = mongoose.model("googleuser", userSchema);

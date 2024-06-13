@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.entirecontainer{
+    background-color: #f0f0f0;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.profileContainer {
+  font-family: "Montserrat", sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #eee9e9, #dddddd);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profileContainer h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.profileContainer p {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.profileContainer strong {
+  font-weight: bold;
+  color: #444;
+}
+
+.profileContainer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.profileContainer ul li {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.profileContainer .solvedProblems {
+  margin-top: 30px;
+}
+
+.profileContainer .solvedProblems h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.profileContainer .solvedProblems p {
+  margin-top: 10px;
+  font-style: italic;
+  color: #888;
+}

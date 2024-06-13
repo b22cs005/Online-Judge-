@@ -1,4 +1,6 @@
 const Problem = require('../models/problemsModel');
+const User = require('../models/UserModel');
+const googleUser = require('../models/googleusermodel')
 
 exports.getAllProblems = async (req, res) => {
   try {
@@ -62,6 +64,31 @@ exports.getProblem = async(req,res) => {
      const id = req.params.id;
      const p_by_id = await Problem.findById(id);
      res.status(201).json({p_by_id});
+  }
+  catch(error){
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+exports.addProblemInUser = async(req,res) => {
+  const {userId,problemId} = req.body;
+  errors={};
+  try{
+    let user = await User.findById(userId);
+    if (!user) {
+    user = await googleUser.findById(userId);
+      if (!user) {
+        errors.message = "No such user exists";
+        return res.status(400).json({ errors });
+      }
+   }
+   console.log(problemId);
+   if (!user.solvedProblems.includes(problemId)) { 
+    user.solvedProblems.push(problemId);
+    await user.save();
+   }
+   res.status(201).json({ message: "Problem successfully submitted",success:true});
   }
   catch(error){
     console.error(error);

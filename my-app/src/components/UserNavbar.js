@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import styles from "./UserNavbar.module.css";
 import { useNavigate } from "react-router-dom";
 
-const UserNavbar = ({toggleUserLogin}) => {
+const UserNavbar = ({toggleUserLogin,setUserData}) => {
     const [cookies,removeCookie]=useCookies([]);
     const [username,setUsername]=useState("");
     const navigate = useNavigate();
@@ -16,14 +16,17 @@ const UserNavbar = ({toggleUserLogin}) => {
             {withCredentials:true}
         );
         const {status,user}=data;
-        console.log(status);
-        setUsername(user);
+        //console.log(status);
+        setUsername(user.username);
+        setUserData(user);
     };
     verifyCookie();
-    },[cookies,toggleUserLogin,removeCookie]);
+    },[removeCookie]);
     const Logout = () => {
         removeCookie("token");
+        navigate('/');
         toggleUserLogin();
+        setUserData({});
       };
       return (
         <>
@@ -35,6 +38,9 @@ const UserNavbar = ({toggleUserLogin}) => {
             </h4>
             <button onClick={() => navigate('/')} className={styles.btnHome}>
               Home
+            </button>
+            <button className={styles.btnHome} onClick={()=>navigate('/profile')}>
+              View Profile
             </button>
             <button className={styles.btnLogout} onClick={Logout}>LOGOUT</button>
           </span>

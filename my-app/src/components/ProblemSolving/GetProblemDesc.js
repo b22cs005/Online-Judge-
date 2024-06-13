@@ -5,7 +5,7 @@ import styles from './GetProblemDesc.module.css';
 import CodeEditor from './CodeEditor';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const GetProblemDesc = () => {
+const GetProblemDesc = ({userData}) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [problem, setProblem] = useState({
@@ -67,7 +67,7 @@ const GetProblemDesc = () => {
         ))}
       </div>
       <div className={styles.codeEditor}>
-        <CodeEditor problemId={problem._id} />
+        <CodeEditor problemId={problem._id} userData={userData} />
       </div>
     </div>
   )
