@@ -47,12 +47,12 @@ ul {
 
 .editor {
   flex-grow: 1;
-  background-color: #f7fafc;
-  border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
   overflow-y: auto;
+  background-color: #000; 
+  border: 1px solid #333;
 }
 
 .run {
@@ -106,7 +106,27 @@ ul {
   margin-bottom: 10px; 
 }
 
+.actualEditor {
+  font-family: "Fira Code", "Fira Mono", monospace;
+  font-size: 12px;
+  color: #fff; 
+  background-color: #000; 
+  outline: none;
+  border: none;
+  height: 100%; 
+  width: 100%; 
+}
+
 .actualEditor:focus{
   outline:none;
   border:none;
+}
+
+.lineNumbers {
+  font-family: "Fira Code", "Fira Mono", monospace;
+  font-size: 12px;
+  color: #999;
+  margin-right: 10px;
+  text-align: right;
+  user-select: none;
 }
