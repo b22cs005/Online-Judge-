@@ -11,31 +11,35 @@
     justify-content: space-between;
     align-items: center;
     font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
     background-color: lightgray;
-    padding:10px;
-    height:80px;
+    padding: 0 20px;
+    height: 80px;
 }
-.logo{
-    margin-right:30px;
-    width:200px;
-    height:auto;
-    cursor:pointer;
+
+.logo {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
 }
-.user {
-    margin-right: 50px;
+
+.navButtons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .btnLogout {
     font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 500;
-    font-style: normal;
     padding: 9px 25px;
     background-color: #90645E;
-    color:white;
+    color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -45,20 +49,19 @@
 .btnLogout:hover {
     background-color: #b28e89;
 }
-.btnHome{
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal;
-    margin-right: 0px;
-    border:none;
-    background-color: lightgray;
-    transition:all 0.3s ease 0s;
-    padding:31px;
-    color:#90645E;
 
+.btnHome {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    border: none;
+    background-color: lightgray;
+    transition: all 0.3s ease 0s;
+    padding: 9px 25px;
+    color: #90645E;
+    cursor: pointer;
 }
-.btnHome:hover{
-    color:white;
-    background-color:#b28e89;
+
+.btnHome:hover {
+    color: white;
+    background-color: #b28e89;
 }

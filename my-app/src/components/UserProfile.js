@@ -27,24 +27,34 @@ const UserProfile = ({ userData }) => {
   }
 
   return (
-    <div className={styles.entirecontainer}>
-    <div className={styles.profileContainer}>
-    <h1>{user.displayName ? user.displayName : user.username}'s Profile</h1>
-      <p><strong>Email:</strong> {user.email}</p>
-      <p><strong>Number of Problems Solved:</strong> {user.solvedProblems.length}</p>
-      <div className={styles.solvedProblems}>
-        <h2>Solved Problems</h2>
-        {user.solvedProblems.length > 0 ? (
-          <ul>
-            {user.solvedProblems.map(problem => (
-              <li key={problem._id}>{problem.title}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No problems solved yet.</p>
-        )}
+    <div className={styles.dashboard}>
+      <nav className={styles.sidebar}>
+        <h2>Dashboard</h2>
+      </nav>
+      <div className={styles.main}>
+        <header className={styles.header}>
+          <h1>Welcome, {user.displayName ? user.displayName : user.username}</h1>
+        </header>
+        <div className={styles.content}>
+          <div className={styles.profileContainer}>
+            <h2>Profile Information</h2>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Number of Problems Solved:</strong> {user.solvedProblems.length}</p>
+            <div className={styles.solvedProblems}>
+              <h2>Solved Problems</h2>
+              {user.solvedProblems.length > 0 ? (
+                <ul>
+                  {user.solvedProblems.map(problem => (
+                    <li key={problem._id}>{problem.title}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No problems solved yet.</p>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

@@ -77,15 +77,11 @@ const Navbar = ({userData,setUserData}) => {
           <>
             <span className={styles.homePage}>
               <img src="/default.svg" alt="Online Judge Logo" className={styles.logoGoogle} />
-              <h4 className={styles.user}>
-                {" "}
-                Welcome <span>{userData?.displayName}</span>
-              </h4>
               <button onClick={() => navigate('/')} className={styles.btnHome}>
               Home
             </button>
             <button className={styles.btnHome} onClick={()=>navigate('/profile')}>
-              View Profile
+              Dashboard
             </button>
               <button className={styles.btnLogout} onClick={logout}>LOGOUT</button>
             </span>
