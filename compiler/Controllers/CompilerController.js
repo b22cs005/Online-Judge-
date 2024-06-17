@@ -52,7 +52,7 @@ exports.PassVerdict = async (req,res) => {
        const filePath = generateFile(language,code);
        const id = req.params.id;
        const problem = await Problem.findById(id);
-       const testCases = language === 'cpp' || language === 'c' ? problem.testCasesCpp : problem.testCasesPy;
+       const testCases = problem.testCases;
 
        for (const testCase of testCases) { 
         const inputFilePath = generateInputFile(testCase.Input);

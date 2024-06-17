@@ -16,12 +16,12 @@ if (!fs.existsSync(outputCpp)) {
 
 module.exports.executeCpp = (filePath,inputFilePath) => {
     const jobId = path.basename(filePath).split(".")[0];
-    const outputCppfilename = `${jobId}.out`;
+    const outputCppfilename = `${jobId}.exe`;
     const outCppPath = path.join(outputCpp, outputCppfilename);
     
     return new Promise((resolve, reject) => {
         exec(
-            `g++ "${filePath}" -o "${outCppPath}" && cd "${outputCpp}" && ./"${outputCppfilename}" < "${inputFilePath}"`,
+            `g++ "${filePath}" -o "${outCppPath}" && cd "${outputCpp}" && .\\"${outputCppfilename}" < "${inputFilePath}"`,
             (error, stdout, stderr) => {
                 if (error) {
                     reject(error);

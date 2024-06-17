@@ -7,6 +7,7 @@ import styles from './Allproblems.module.css';
 const GetFilteredProblems = () => {
   const navigate = useNavigate();
   const { topic } = useParams();
+  console.log(topic);
   const [problems,setProblems]=useState([]);
 
   const solveProblem = (id) => {

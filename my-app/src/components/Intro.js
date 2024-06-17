@@ -15,7 +15,7 @@ const Intro = ({ userLogin, userData }) => {
       <header>
         <h1>Welcome to Codehack</h1>
       </header>
-      <p>An interactive platform for coding enthusiasts to solve problems, improve skills, and compete with others.</p>
+      <p>An interactive platform for coding enthusiasts to solve problems and improve their skills.</p>
       <button className={styles.btn} onClick={exploreProblems}>Explore Problems</button>
     </section>
     <section className={styles.devimg}>

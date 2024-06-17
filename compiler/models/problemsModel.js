@@ -12,8 +12,7 @@ const problemSchema = new mongoose.Schema({
   inputFormat: String,
   outputFormat: String,
   examples: [exampleSchema], 
-  testCasesCpp:[testCaseSchema],
-  testCasesPy:[testCaseSchema]
+  testCases:[testCaseSchema],
 });
 
 

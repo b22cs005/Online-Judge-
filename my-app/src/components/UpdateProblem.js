@@ -30,8 +30,7 @@ const UpdateProblemForm = () => {
     inputFormat: "",
     outputFormat: "",
     examples: [],
-    testCasesCpp:[],
-    testCasesPy:[]
+    testCases:[]
   });
 
   useEffect(()=>{
@@ -51,7 +50,7 @@ const UpdateProblemForm = () => {
 
   console.log(problem.testCasesCpp);
 
-  const {title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples,testCasesCpp,testCasesPy} = problem;
+  const {title, topic, difficulty, description, constraints, inputFormat, outputFormat, examples,testCases} = problem;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -181,8 +180,7 @@ const UpdateProblemForm = () => {
       inputFormat: "",
       outputFormat: "",
       examples: [],
-      testCasesCpp:[],
-      testCasesPy:[]
+      testCases:[]
     });
   };
 
@@ -268,42 +266,23 @@ const UpdateProblemForm = () => {
           <button type="button" onClick={handleAddExample} className={styles.btn}>Add Example</button>
         </div>
         <div>
-          <label>Test Cases for C++:</label>
-          {testCasesCpp.map((testCase, index) => (
+          <label>Hidden Test Cases:</label>
+          {testCases.map((testCase, index) => (
             <div key={index}>
               <textarea
                 value={testCase.Input}
-                onChange={(e) => handleTestCaseInputChange('testCasesCpp', index, 'Input', e.target.value)}
+                onChange={(e) => handleTestCaseInputChange('testCases', index, 'Input', e.target.value)}
                 placeholder="Input"
               />
               <textarea
                 value={testCase.Output}
-                onChange={(e) => handleTestCaseInputChange('testCasesCpp', index, 'Output', e.target.value)}
+                onChange={(e) => handleTestCaseInputChange('testCases', index, 'Output', e.target.value)}
                 placeholder="Output"
               />
-              <button type="button" className={styles.cross} onClick={() => handleDeleteTestCase('testCasesCpp', index)}>&#10060;</button>
+              <button type="button" className={styles.cross} onClick={() => handleDeleteTestCase('testCases', index)}>&#10060;</button>
             </div>
           ))}
-          <button type="button" className={styles.btn} onClick={() => handleAddTestCase('testCasesCpp')}>Add Test Case</button>
-        </div>
-        <div>
-          <label>Test Cases for Python:</label>
-          {testCasesPy.map((testCase, index) => (
-            <div key={index} >
-              <textarea
-                value={testCase.Input}
-                onChange={(e) => handleTestCaseInputChange('testCasesPy', index, 'Input', e.target.value)}
-                placeholder="Input"
-              />
-              <textarea
-                value={testCase.Output}
-                onChange={(e) => handleTestCaseInputChange('testCasesPy', index, 'Output', e.target.value)}
-                placeholder="Output"
-              />
-              <button type="button" className={styles.cross} onClick={() => handleDeleteTestCase('testCasesPy', index)}>&#10060;</button>
-            </div>
-          ))}
-          <button type="button" className={styles.btn} onClick={() => handleAddTestCase('testCasesPy')}>Add Test Case</button>
+          <button type="button" className={styles.btn} onClick={() => handleAddTestCase('testCases')}>Add Test Case</button>
         </div>
         <button type="submit" className={styles.btn}>Submit</button>
       </form>

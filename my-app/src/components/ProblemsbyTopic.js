@@ -30,13 +30,13 @@ const ProblemsbyTopic = () => {
 
   const items = [
     { title: 'All problems' },
+    { title: 'Math' },
     { title: 'Dynamic Programming' },
     { title: 'Trees' },
     { title: 'Stacks and Queues' },
     { title: 'Heaps' },
     { title: 'Graphs' },
-    { title: 'Two pointer' },
-    { title: 'Math' },
+    { title: 'Two pointers' },
   ];
 
   const colors = ['#f9b234', '#3ecd5e', '#e44002', '#952aff', '#cd3e94', '#4c49ea'];
