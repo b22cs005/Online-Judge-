@@ -17,7 +17,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Your password is required"],
     },
-    solvedProblems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Problem' }]
+    solvedProblems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Problem' }],
+    role:{
+      type:String,
+      default:"user",
+    }
 
 });
 

@@ -80,7 +80,7 @@ const Navbar = ({userData,setUserData}) => {
               <button onClick={() => navigate('/')} className={styles.btnHome}>
               Home
             </button>
-            <button className={styles.btnHome} onClick={()=>navigate('/profile')}>
+            <button className={styles.btnDashboard} onClick={()=>navigate('/profile')}>
               Dashboard
             </button>
               <button className={styles.btnLogout} onClick={logout}>LOGOUT</button>

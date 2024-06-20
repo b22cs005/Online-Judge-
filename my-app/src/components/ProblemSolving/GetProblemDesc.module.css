@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .container {
-  height: 100vh;
   position: relative;
+  display:flex;
 }
 
 .problemDesc {
@@ -13,21 +13,18 @@
   width: 50%;
   padding: 20px;
   background-color: #f0f0f0;
+  height:100%;
 }
 
-.codeEditor {
+.codeEditor{
+  width:50%;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  width: 50%;
-  padding: 20px;
-  background-color: #ffffff;
-  margin-left: 50%;
-  position: absolute;
-  top: 0;
-  height:100%;
+  margin-top:10px;
 }
+
 
 h1, h2 {
   margin-bottom: 10px;
@@ -67,6 +64,8 @@ ul {
   padding: 10px 20px;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: 100px; 
+  margin: 0 10px;
 }
 
 .run:hover {
@@ -74,12 +73,12 @@ ul {
 }
 
 .outputbox {
-  background-color: black;
-  color:white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  margin-top: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .row {
@@ -91,7 +90,11 @@ ul {
   background: linear-gradient(45deg, #ff6f61, #ff8e53);
   color: #fff;
   border-radius: 10px;
-  border-color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  outline: none;
+  width:100px;
 }
 
 .selectBox:hover {
@@ -99,7 +102,15 @@ ul {
 }
 
 .option {
+  background: white;
   color: black;
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.option:hover {
+  background: #ff8e53;
+  color: white;
 }
 
 .runCustomInput {
@@ -129,4 +140,9 @@ ul {
   margin-right: 10px;
   text-align: right;
   user-select: none;
+}
+
+.buttonAlign{
+  display:flex;
+  
 }

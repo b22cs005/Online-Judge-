@@ -2,7 +2,7 @@
 
 .introdiv {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   gap: 40px;
@@ -11,9 +11,10 @@
 }
 
 .intro {
-  text-align: left;
+  text-align: center;
   font-family: "Montserrat", sans-serif;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .intro header h1 {
@@ -42,13 +43,16 @@
 }
 
 .devimg {
+  flex: 50;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 50%;
 }
 
 .developer {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 30px;
+  object-fit: contain;
 }

@@ -13,7 +13,7 @@ import axios from "axios";
 function App() {
   const [userData, setUserData] = useState({});
 
-  const getUser = async () => {
+  /*const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:4000/login/success", { withCredentials: true });
       setUserData(response.data.user);
@@ -24,14 +24,15 @@ function App() {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, []);*/
+  
 
   return (
     <div className="App">
       <Navbar userData={userData} setUserData={setUserData} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/problems" element={<Allproblems />} />
+        <Route path="/problems" element={<Allproblems userData={userData}/>} />
         <Route path='/create-own-problem' element={<CreateProblem/>}/>
         <Route path="/update-problem/:id" element={<UpdateProblem/>}/>
         <Route path="/solve-problem/:id" element={<GetProblemDesc userData={userData} />} />

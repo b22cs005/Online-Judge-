@@ -38,10 +38,9 @@ function CodeEditor({ problemId, userData }) {
   const [language, setLanguage] = useState('cpp');
   const [output, setOutput] = useState('');
   const [input, setInput] = useState('');
-  const [option, setOption] = useState('');
-  const [message, setMessage] = useState('');
+  const [verdict, setVerdict] = useState('');
+  const [display, setDisplay] = useState(''); 
   const [success, setSuccess] = useState(null);
-  const [submit, setSubmit] = useState(false);
 
   const handleError = (err) => {
     toast.error(err, {
@@ -64,7 +63,7 @@ function CodeEditor({ problemId, userData }) {
     setCode(defaultCodes[language]);
   }, [language]);
 
-  const handleRunCustomInput = async () => {
+  const handleRunCode = async () => {
     const payload = {
       language: language,
       code,
@@ -73,16 +72,16 @@ function CodeEditor({ problemId, userData }) {
     try {
       const { data } = await axios.post('http://localhost:5000/run', payload);
       setOutput(data.output);
+      setDisplay('run');
     } catch (error) {
       if (error.response.status === 400) {
         setOutput(`Compilation Error: ${error.response.data.message}`);
+        setDisplay('run');
       }
     }
   }
 
   const handleSubmitCode = async () => {
-    setOption('');
-    setOutput('');
     const payload = {
       language: language,
       code
@@ -90,23 +89,17 @@ function CodeEditor({ problemId, userData }) {
     try {
       const { data } = await axios.post(`http://localhost:5000/submit/${problemId}`, payload);
       setSuccess(data.success);
-      setMessage(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
-      if (data.success === true) {
-        setSubmit(true);
-      }
+      setVerdict(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
+      setDisplay('submit');
     } catch (error) {
       setSuccess(false);
-      setMessage('An error occurred while submitting the code.');
+      setVerdict('An error occurred while submitting the code.');
+      setDisplay('submit');
     }
   }
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
-  }
-
-  const handleOptionChange = (selectedOption) => {
-    setOption(selectedOption);
-    setMessage('');
   }
 
   const handleAddInUser = async () => {
@@ -124,8 +117,7 @@ function CodeEditor({ problemId, userData }) {
         } else {
           handleError(message);
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.error(error);
       }
     }
@@ -137,9 +129,7 @@ function CodeEditor({ problemId, userData }) {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.row}>
-      </div>
+    <div className={styles.container2}>
       <div className={styles.row}>
         <select className={styles.selectBox} onChange={handleLanguageChange} value={language}>
           <option value='cpp' className={styles.option}>C++</option>
@@ -151,7 +141,7 @@ function CodeEditor({ problemId, userData }) {
         <div className={styles.editor}>
           <Editor
             width="100%"
-            height="400px"
+            height="300px"
             language={language === 'py' ? 'python' : language === 'c' ? 'c' : 'cpp'}
             theme="vs-dark"
             value={code}
@@ -160,26 +150,32 @@ function CodeEditor({ problemId, userData }) {
           />
         </div>
       </div>
-      <div className={styles.row}>
+      <div className={`${styles.row} ${styles.buttonAlign}`}>
         <button
-          onClick={() => handleOptionChange('runCustomInput')}
+          onClick={() => setDisplay('console')}
           type="button"
-          className={`${styles.run} ${styles.runCustomInput}`}
+          className={styles.run}
         >
-          Run Custom Input
+          Console
+        </button>
+        <button
+          onClick={handleRunCode}
+          type="button"
+          className={styles.run}
+        >
+          Run
         </button>
         <button
           onClick={handleSubmitCode}
           type="button"
-          id={styles.hidden}
           className={styles.run}
         >
-          Run on Hidden Test Cases
+          Submit
         </button>
       </div>
-      {option === 'runCustomInput' && (
-        <>
-          <div className={styles.row}>
+      <div className={styles.row}>
+        {display === 'console' && (
+          <div>
             <h3 className={styles.inputHeading}>Input</h3>
             <textarea
               className={styles.outputbox}
@@ -189,45 +185,38 @@ function CodeEditor({ problemId, userData }) {
               onChange={handleInputChange}
             />
           </div>
-          <div className={styles.row}>
-            <button onClick={handleRunCustomInput} type="button" className={styles.run}>
-              Run
-            </button>
-          </div>
-        </>
-      )}
-      {output && (
-        <div className={styles.row}>
-          <h3 className={styles.inputHeading}>Output</h3>
-          <div className={styles.outputbox}>
-            <div style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
-              whiteSpace: 'pre-wrap',
-              height: 'auto',
-              minHeight: '100px',
-              overflowY: 'auto'
-            }}>
-              {output}
+        )}
+        {display === 'run' && (
+          <div>
+            <h3 className={styles.inputHeading}>Output</h3>
+            <div className={styles.outputbox}>
+              <div style={{
+                fontFamily: '"Fira code", "Fira Mono", monospace',
+                fontSize: 12,
+                whiteSpace: 'pre-wrap',
+                height: 'auto',
+                minHeight: '100px',
+                overflowY: 'auto'
+              }}>
+                {output}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {message && (
-        <div className={styles.row}>
-          <div className={styles.messageBox} style={{ backgroundColor: success ? '#d4edda' : '#f8d7da' }}>
-            <p>{message}</p>
+        )}
+        {display === 'submit' && (
+          <div>
+            <h3 className={styles.inputHeading}>Verdict</h3>
+            <div className={styles.messageBox} style={{ backgroundColor: success ? '#d4edda' : '#f8d7da' }}>
+              <p>{verdict}</p>
+              {success && (
+                <button onClick={handleAddInUser} className={styles.run} style={{ marginTop: '10px' }}>
+                  Add to My Problems
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-
-      {submit && (
-        <div className={styles.row}>
-          <button onClick={handleAddInUser} type="button" className={styles.run}>
-            Submit
-          </button>
-        </div>
-      )}
+        )}
+      </div>
       <ToastContainer containerId={"containerAddToUser"} />
     </div>
   );

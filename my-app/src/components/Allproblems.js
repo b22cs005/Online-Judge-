@@ -10,12 +10,13 @@ import UpdateIcon from '@mui/icons-material/Update';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
-const Allproblems = () => {
+const Allproblems = ({userData}) => {
   const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredProblems, setFilteredProblems] = useState([]);
   const [filterDifficulty, setFilterDifficulty] = useState("All");
   const [filterTopic,setFilterTopic] = useState('All');
+  const [userRole,setUserRole]=useState({});
   const navigate = useNavigate();
   const updateProblem = (id) => {
     navigate(`/update-problem/${id}`);
@@ -91,6 +92,10 @@ const Allproblems = () => {
   setFilteredProblems(filteredProblems);
   }, [problems, filterDifficulty,filterTopic]);
 
+  useEffect(() => {
+    setUserRole(userData.role);
+  }, [userData]);
+
   if (loading) {
     return <p className={styles.loading}>Loading problems...</p>
   }
@@ -100,7 +105,13 @@ const Allproblems = () => {
       <h1 className={styles.header}>All problems</h1>
       <button className={styles.arrowBack}>  <ArrowBackIcon onClick={()=>navigate('/')}/></button>
       <div className={styles.createAndFilter}>
-    <div><button className={styles.createBtn} onClick={()=>navigate('/create-own-problem')}>Create Your Own Problem</button></div>  
+      {userRole === 'admin' && (
+        <div>
+          <button className={styles.createBtn} onClick={() => navigate('/create-own-problem')}>
+            Create Your Own Problem
+          </button>
+        </div>
+      )}  
       <div className={styles.filterDifficulty}>
         <p className={styles.difficultyHeading}>Filter by Difficulty</p>
         <select className={styles.selectDifficulty} onChange={(e)=>setFilterDifficulty(e.target.value)}>
@@ -137,12 +148,16 @@ const Allproblems = () => {
             <button className={styles.problemTitle} onClick={()=>solveProblem(problem._id)}>{problem.title}</button>
             <p className={styles.problemTopic}>Topic: {problem.topic}</p>
             <p className={styles.problemDifficulty}>Difficulty: {problem.difficulty}</p>
-            <button className={styles.deleteBtn} onClick={() => deleteProblem(problem._id)}>
-            <DeleteIcon className="delete-icon"></DeleteIcon>
-            </button>
-            <button className={styles.deleteBtn} onClick={() => updateProblem(problem._id)}>
-            <UpdateIcon className="delete-icon"></UpdateIcon>
-            </button>
+            {userRole === 'admin' && (
+            <>
+              <button className={styles.deleteBtn} onClick={() => deleteProblem(problem._id)}>
+                <DeleteIcon className="delete-icon" />
+              </button>
+              <button className={styles.deleteBtn} onClick={() => updateProblem(problem._id)}>
+                <UpdateIcon className="delete-icon" />
+              </button>
+            </>
+          )}
           </li>
         ))}
       </ul>

@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Intro.module.css'; 
 import { useNavigate } from 'react-router-dom';
+import Lottie from "lottie-react";
+import Animation from "./manOnLaptop.json";
 
 const Intro = ({ userLogin, userData }) => {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const Intro = ({ userLogin, userData }) => {
       <button className={styles.btn} onClick={exploreProblems}>Explore Problems</button>
     </section>
     <section className={styles.devimg}>
-        <img src='/sw_developer.png' className={styles.developer} alt="developer image"/>
+    <Lottie animationData={Animation} loop={true} className={styles.developer} />
       </section>
     </div>
   );

@@ -14,7 +14,8 @@
 }
 
 .logo {
-    margin-right: 750px; 
+    margin-right: 30px;
+    margin-left:30px; 
     width: 200px; 
     height: auto;
     cursor: pointer;
@@ -169,25 +170,34 @@ input[type="password"]:focus {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
+    margin-left:30px;
 }
 
 .btnLogout:hover {
     background-color: #b28e89;
 }
-.btnHome{
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal;
-    margin-right: 50px;
-    border:none;
-    background-color: lightgray;
-    transition:all 0.3s ease 0s;
-    padding:31px;
-    color:#90645E;
 
+
+.btnHome {
+    margin-left: auto; 
 }
-.btnHome:hover{
-    color:white;
-    background-color:#b28e89;
+
+.btnDashboard {
+    margin-left: 30px; 
+}
+
+.btnHome, .btnDashboard {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    border: none;
+    background-color: lightgray;
+    transition: all 0.3s ease 0s;
+    padding: 31px;
+    color: #90645E;
+    cursor: pointer;
+}
+
+.btnHome:hover, .btnDashboard:hover {
+    color: white;
+    background-color: #b28e89;
 }
