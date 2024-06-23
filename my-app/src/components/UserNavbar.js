@@ -5,7 +5,7 @@ import styles from "./UserNavbar.module.css";
 import { useNavigate } from "react-router-dom";
 
 const UserNavbar = ({ toggleUserLogin, setUserData }) => {
-  const [cookies, removeCookie] = useCookies([]);
+  const [cookies, clearCookie] = useCookies([]);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
@@ -21,10 +21,10 @@ const UserNavbar = ({ toggleUserLogin, setUserData }) => {
       setUserData(user);
     };
     verifyCookie();
-  }, [removeCookie]);
+  }, [clearCookie]);
 
   const Logout = () => {
-    removeCookie("token");
+    clearCookie("token", { path: '/', sameSite: 'None', secure: true });
     navigate('/');
     toggleUserLogin();
     setUserData({});

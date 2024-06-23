@@ -90,7 +90,10 @@ module.exports.LogIn = async (req, res, next) => {
         // Store token in cookies with options
         const options = {
             expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
-            httpOnly: true,
+            //httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+
         };
         // Send token
         res.status(200).cookie("token", token, options).json({
