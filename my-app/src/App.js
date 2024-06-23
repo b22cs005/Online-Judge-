@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from './components/Home';
 import Allproblems from "./components/Allproblems";
 import Navbar from './components/Navbar';
-import CreateProblem from './components/CreateProblem.js';
+import CreateProblem from './components/AddProblem.js';
 import UpdateProblem from './components/UpdateProblem';
 import GetProblemDesc from './components/ProblemSolving/GetProblemDesc';
 import GetFilteredProblems from './components/GetFilteredProblems';
