@@ -8,7 +8,7 @@ const UserProfile = ({ userData }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const { data } = await axios.post('http://localhost:4000/profile', { userId: userData._id });
+        const { data } = await axios.post('https://backend.codehack.me/profile', { userId: userData._id });
         if (data.success) {
           setUser(data.user);
         } else {

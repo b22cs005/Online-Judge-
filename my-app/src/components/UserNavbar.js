@@ -12,7 +12,7 @@ const UserNavbar = ({ toggleUserLogin, setUserData }) => {
   useEffect(() => {
     const verifyCookie = async () => {
       const { data } = await axios.post(
-        "http://localhost:4000/",
+        "https://backend.codehack.me/",
         {},
         { withCredentials: true }
       );
@@ -25,7 +25,7 @@ const UserNavbar = ({ toggleUserLogin, setUserData }) => {
 
   const Logout = async() => {
     try {
-      await axios.post(`http://localhost:4000/userlogout`, {}, { withCredentials: true });
+      await axios.post(`https://backend.codehack.me/userlogout`, {}, { withCredentials: true });
       navigate("/");
       toggleUserLogin();
       setUserData({});

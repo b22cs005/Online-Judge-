@@ -21,7 +21,7 @@ const Login = ({ modal1, toggleModal1, handleError, handleSuccess, closeLogInMod
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/login", { ...loginValue }, { withCredentials: true });
+      const { data } = await axios.post("https://backend.codehack.me/login", { ...loginValue }, { withCredentials: true });
       const { success, message} = data;
       if (success) {
         handleSuccess(message);
@@ -46,7 +46,7 @@ const Login = ({ modal1, toggleModal1, handleError, handleSuccess, closeLogInMod
   };
 
   const handleGoogleSignIn = () => {
-    window.open("http://localhost:4000/auth/google/callback","_self");
+    window.open("https://backend.codehack.me/auth/google/callback","_self");
   };
 
   return (

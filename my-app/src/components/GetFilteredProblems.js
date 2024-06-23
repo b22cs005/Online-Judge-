@@ -17,7 +17,7 @@ const GetFilteredProblems = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/problems'); 
+        const response = await axios.get('https://backend.codehack.me/problems'); 
         let problems = response.data;
         if(topic==="All problems"){
             setProblems(response.data);

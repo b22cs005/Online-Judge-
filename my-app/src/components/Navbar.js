@@ -17,7 +17,7 @@ const Navbar = ({userData,setUserData}) => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/login/success", { withCredentials: true });
+      const response = await axios.get("https://backend.codehack.me/login/success", { withCredentials: true });
       setUserData(response.data.user);
     } catch (error) {
       console.log("error", error);
@@ -29,7 +29,7 @@ const Navbar = ({userData,setUserData}) => {
   }, []);
 
   const logout = () => {
-    window.open("http://localhost:4000/logout", "_self");
+    window.open("https://backend.codehack.me/logout", "_self");
     setUserData({});
   };
 

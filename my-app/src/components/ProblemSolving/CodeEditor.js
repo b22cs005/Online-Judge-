@@ -70,7 +70,7 @@ function CodeEditor({ problemId, userData }) {
       input
     };
     try {
-      const { data } = await axios.post('http://localhost:5000/run', payload);
+      const { data } = await axios.post('https://compiler.codehack.me/run', payload);
       setOutput(data.output);
       setDisplay('run');
     } catch (error) {
@@ -87,7 +87,7 @@ function CodeEditor({ problemId, userData }) {
       code
     };
     try {
-      const { data } = await axios.post(`http://localhost:5000/submit/${problemId}`, payload);
+      const { data } = await axios.post(`https://compiler.codehack.me/submit/${problemId}`, payload);
       setSuccess(data.success);
       setVerdict(data.success ? 'Code passed all hidden test cases successfully!' : 'Code failed some hidden test cases.');
       setDisplay('submit');
@@ -107,7 +107,7 @@ function CodeEditor({ problemId, userData }) {
       alert("Please login or signup first!");
     } else {
       try {
-        const { data } = await axios.post(`http://localhost:4000/addProblemInUser`, {
+        const { data } = await axios.post(`https://backend.codehack.me/addProblemInUser`, {
           userId: userData._id,
           problemId: problemId
         })

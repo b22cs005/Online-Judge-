@@ -40,7 +40,7 @@ const Allproblems = ({userData}) => {
     
   const deleteProblem = async (id) => {
     try{
-    const {data} = await axios.delete(`http://localhost:4000/problems/${id}`);
+    const {data} = await axios.delete(`https://backend.codehack.me/problems/${id}`);
     const {success,message}=data;
     if(success){
       handleSuccess(message);
@@ -64,7 +64,7 @@ const Allproblems = ({userData}) => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/problems');
+        const response = await axios.get('https://backend.codehack.me/problems');
         console.log(response.data);
         setProblems(response.data);
         setLoading(false);

@@ -137,7 +137,7 @@ const ProblemForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/problems/add", { ...problem });
+      const { data } = await axios.post("https://backend.codehack.me/problems/add", { ...problem });
       console.log(data);
       const { success, message } = data;
       if (success) {

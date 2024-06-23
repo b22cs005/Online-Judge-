@@ -23,7 +23,7 @@ const Signup = ({ modal2, toggleModal2, handleError, handleSuccess, closeSignupM
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/signup", { ...inputValue }, { withCredentials: true });
+      const { data } = await axios.post("https://backend.codehack.me/signup", { ...inputValue }, { withCredentials: true });
       const { success, message } = data;
       if (success) {
         handleSuccess(message);

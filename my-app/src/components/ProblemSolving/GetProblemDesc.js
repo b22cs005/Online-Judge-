@@ -22,7 +22,7 @@ const GetProblemDesc = ({userData}) => {
   useEffect(() => {
     const getProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/problems/${id}`);
+        const response = await axios.get(`https://backend.codehack.me/problems/${id}`);
         const problem = response.data.p_by_id;
         setProblem(problem);
       } catch (error) {
