@@ -5,7 +5,7 @@ import styles from "./UserNavbar.module.css";
 import { useNavigate } from "react-router-dom";
 
 const UserNavbar = ({ toggleUserLogin, setUserData }) => {
-  const [cookies, clearCookie] = useCookies([]);
+  const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
@@ -21,13 +21,19 @@ const UserNavbar = ({ toggleUserLogin, setUserData }) => {
       setUserData(user);
     };
     verifyCookie();
-  }, [clearCookie]);
+  }, [removeCookie]);
 
-  const Logout = () => {
-    clearCookie("token", { path: '/', sameSite: 'None', secure: true });
-    navigate('/');
-    toggleUserLogin();
-    setUserData({});
+  const Logout = async() => {
+    try {
+      await axios.post(`http://localhost:4000/userlogout`, {}, { withCredentials: true });
+      navigate("/");
+      toggleUserLogin();
+      setUserData({});
+    }
+    catch (error) {
+      console.error("Failed to logout:", error);
+    }
+
   };
 
   return (

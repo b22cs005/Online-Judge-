@@ -149,3 +149,18 @@ module.exports.UserProfile = async (req, res) => {
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
+module.exports.UserLogout = (req, res) => {
+    try{
+              res.clearCookie("token",{
+                sameSite: 'None',
+                secure: true,
+              });
+              res.status(200).send({
+                        message: "You have successfully logged out!",
+                        success: true,
+              });
+    } catch(error){
+              console.log(error.message);
+    }
+}
