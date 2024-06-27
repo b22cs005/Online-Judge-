@@ -19,7 +19,7 @@ const startServer = async () => {
     // Middleware configuration
     app.use(
       cors({
-        origin: ["https://online-judge-omega.vercel.app/"],
+        origin: ["https://www.codehack.me/","https://codehack.me/"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
       })

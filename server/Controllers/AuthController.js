@@ -111,8 +111,8 @@ module.exports.LogIn = async (req, res, next) => {
 module.exports.googleLogin = passport.authenticate("google", { scope: ["profile", "email"] });
 
 module.exports.googleCallback = passport.authenticate("google", {
-  failureRedirect: "http://localhost:3000/",
-  successRedirect: "http://localhost:3000/", 
+  failureRedirect: "https://www.codehack.me/",
+  successRedirect: "https://www.codehack.me/", 
 });
 
 module.exports.G_Login_succ = async(req,res) => {
@@ -126,7 +126,7 @@ module.exports.G_Login_succ = async(req,res) => {
 module.exports.G_Logout = async(req,res,next) => {
     req.logout(function(err){
       if(err){return next(err)}
-      res.redirect("http://localhost:3000/");
+      res.redirect("https://www.codehack.me/");
     })
 }
 

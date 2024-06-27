@@ -10,7 +10,7 @@ passport.use(
       {
         clientID: client_id,
         clientSecret: client_secret,
-        callbackURL: "http://localhost:4000/auth/google/callback",
+        callbackURL: "https://backend.codehack.me/auth/google/callback",
         scope: ["profile", "email"],
       },
       async (accessToken, refreshToken, profile, done) => {
