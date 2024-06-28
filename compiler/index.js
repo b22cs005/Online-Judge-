@@ -16,14 +16,14 @@ const startServer = async () => {
     console.log("MongoDB is connected successfully");
 
 
-    // Middleware configuration
     app.use(
       cors({
-        origin: ["https://www.codehack.me/","https://codehack.me/"],
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        origin: ["https://www.codehack.me", "https://codehack.me","https://online-judge-c3r5.vercel.app"],
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         credentials: true,
       })
     );
+
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
